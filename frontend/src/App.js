@@ -1,4 +1,5 @@
 
+import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import React from 'react';
@@ -9,8 +10,10 @@ import ContactUs from './Components/ContactUs/ContactUs'
 function App() {
   return (
     <div>
+    <Home/>
       <HowItWorks />
       <ContactUs />
+
     </div>
   );
 }
