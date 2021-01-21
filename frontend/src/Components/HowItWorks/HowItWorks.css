@@ -1,0 +1,16 @@
+.left-card {
+   
+    text-align: center;
+    border: 1px solid;
+    font-size : 2 rem;
+    width : 40%;
+    
+}
+
+.right-card {
+   
+    text-align: center;
+    border: 1px solid;
+    font-size : 4 rem;
+    width : 40%;
+}
