@@ -14,7 +14,7 @@ const Workingg = () => {
         <Jumbotron>
             <h1>How It Works?</h1>
             <p> </p>
-            <div className = 'left-card'>
+            <div className = 'left-card' >
             <Card body>1. You Login/Signup</Card>
             </div>
             <div className = 'right-card'>
