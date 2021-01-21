@@ -1,8 +1,10 @@
+import React from 'react';
+import HowItWorks from './Components/HowItWorks/HowItWorks';
 
 function App() {
   return (
     <div>
-      App
+      <HowItWorks />
     </div>
   );
 }
