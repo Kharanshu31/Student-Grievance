@@ -1,0 +1,74 @@
+.signUp {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 8%;
+}
+
+.photo {
+  margin-left: 3%;
+  margin-top: -3%;
+}
+.photo img {
+  height: 40rem;
+  width: 40rem;
+}
+
+.signUpForm {
+  margin-left: 12%;
+  margin-top: 2%;
+}
+.signUpForm h1 {
+  font-family: sans-serif;
+  color: #1b7481;
+  font-weight: 700;
+}
+.signUpForm form {
+  margin-top: 2rem;
+}
+.signUpForm form input {
+  border: 1px solid transparent;
+  border-bottom: 2px solid #a1a1a1;
+  display: block;
+  margin-bottom: 1.7rem;
+  width: 22.5rem;
+  padding: 4px 5px;
+  font-size: 1.1rem;
+  color: grey;
+  opacity: 0.7;
+}
+.signUpForm form button {
+  width: 22.5rem;
+  height: 2.5rem;
+  border: 0px solid transparent;
+  border-radius: 0.2rem;
+  background-color: #2996a7;
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 2%;
+}
+.signUpForm p {
+  color: #525050;
+  font-size: 1rem;
+  font-family: sans-serif;
+}
+.signUpForm button {
+  border: 0px solid transparent;
+  border-radius: 1rem;
+  background-color: #e24e42;
+  font-size: 1.1rem;
+  padding: 6px 4px;
+  width: 8rem;
+  height: 2.2rem;
+}
+.signUpForm button a {
+  text-decoration: none;
+  color: white;
+}
+
+.p {
+  margin-left: 45%;
+}
+
+.google {
+  margin-left: 30%;
+}
