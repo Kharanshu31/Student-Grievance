@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import '../css/Navigationbar.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import {
   Collapse,
@@ -9,45 +8,111 @@ import {
   Nav,
   NavItem,
   NavLink,
-  ButtonToggle
-} from 'reactstrap';
+  ButtonToggle,
+} from "reactstrap";
 
-const Navigationbar = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
+import "../css/Navigationbar.css";
 
-  const toggle = () => setIsOpen(!isOpen);
+class Navigationbar extends Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className="Navigation">
-      <Navbar  light expand="md" className="Navbar ml-auto " style={{fontSize:"24px", fontWeight: "bolder"}} >
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav style={{alignItems:"revert"}} navbar className="justify-content-end" style={{ width: "100%" }}>
-            <NavItem>
-              <NavLink className="Navlink" style={{color:'#586DA5'}} href="/home">Home</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className="Navlink" style={{color:'#586DA5'}} href="/About">About</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className="Navlink" style={{color:'#586DA5'}} href="/contact">Contact</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className="Navlink"  style={{color:'#586DA5'}} href="/register"><ButtonToggle color="primary" style={{fontSize:"18px", fontWeight: "bolder", background: "#1C468A"}}>Register</ButtonToggle>{' '}</NavLink>
-              
-            </NavItem>
-            <NavItem>
-              <NavLink  className="Navlink" href="/login"><ButtonToggle color="primary" style={{fontSize:"18px", fontWeight: "bolder", background: "#1C468A"}}>Login</ButtonToggle></NavLink> 
-              
-              
-            </NavItem>
-            
-          </Nav>
-          
-        </Collapse>
-      </Navbar>
-    </div>
-  );
+    this.state = {
+      isOpen: false,
+      isScrolled: false,
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  toggle = () => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        isOpen: !prevState,
+      };
+    });
+  };
+
+  handleScroll = () => {
+    if (window.scrollY > 20) {
+      this.setState({
+        isScrolled: true,
+      });
+    } else {
+      this.setState({
+        isScrolled: false,
+      });
+    }
+  };
+
+  render() {
+    const { isOpen, isScrolled } = this.state;
+    return (
+      <div className={isScrolled ? "Navigation scrolled" : "Navigation"}>
+        <Navbar light expand="md" className="Navbar ml-auto">
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={isOpen} navbar>
+            <Nav
+              style={{ alignItems: "revert" }}
+              navbar
+              className="justify-content-end"
+              style={{ width: "100%" }}
+            >
+              <NavItem>
+                <NavLink
+                  className={isScrolled ? "Navlink scrolledNavlink" : "Navlink"}
+                  href="/home"
+                >
+                  Home
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={isScrolled ? "Navlink scrolledNavlink" : "Navlink"}
+                  href="/About"
+                >
+                  About
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={isScrolled ? "Navlink scrolledNavlink" : "Navlink"}
+                  href="/contact"
+                >
+                  Contact
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="Navlink" href="/register">
+                  <ButtonToggle
+                    className={isScrolled ? "auth scrolledAuth" : "auth"}
+                  >
+                    Register
+                  </ButtonToggle>{" "}
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="Navlink" href="/login">
+                  <ButtonToggle
+                    className={isScrolled ? "auth scrolledAuth" : "auth"}
+                  >
+                    Login
+                  </ButtonToggle>
+                </NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    );
+  }
 }
 
 export default Navigationbar;

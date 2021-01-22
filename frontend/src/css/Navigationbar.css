@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap");
 .Navbar {
-  font-size: large;
+  font-size: 24px;
   font-weight: bolder;
   display: flex;
 }
@@ -9,9 +9,32 @@
   font-style: normal;
   font-weight: bolder;
   margin-left: 5rem;
+  color: #116485 !important;
+}
+
+.scrolledNavlink{
+  color: white !important;
 }
 .Navigation {
-  position: fixed;
+  position: sticky;
+  top: 0;
   display: block;
   width: 100%;
+  z-index: 2;
+  background-color: transparent;
+}
+
+.auth {
+  font-size: 18px;
+  font-weight: bolder;
+  background-color: #00587a;
+}
+
+.scrolled {
+  background-color: #00587a;
+}
+
+.scrolledAuth {
+  background-color: white;
+  color: #116485;
 }

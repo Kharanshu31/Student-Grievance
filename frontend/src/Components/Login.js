@@ -6,26 +6,33 @@ class Login extends Component {
   render() {
     return (
       <div className="signIn">
-          <div className="photo">
-        <img src={pic} />
+        <div className="photo">
+          <img src={pic} alt="" />
         </div>
         <div className="signInForm">
+          <h1>
+            {" "}
+            Hello, <br />
+            Welcome Back
+          </h1>
 
-            <h1> Hello, <br/>
-            Welcome Back</h1>
+          <form>
+            <input type="email" name="email" placeholder="email" required />
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              required
+            />
 
-            <form >
-                <input type="email" name="email"placeholder="email" required />
-                <input type="password" name="password" placeholder="password" required /> 
+            <button type="submit">Log In</button>
+          </form>
 
-                <button type="submit">Log In</button>
-            </form>
+          <p className="p">or</p>
 
-            <p className="p">or</p>
-
-            <button className="google"><a href="" >Google</a></button>
-
-
+          <button className="google">
+            <a>Google</a>
+          </button>
         </div>
       </div>
     );

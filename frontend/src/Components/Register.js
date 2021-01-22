@@ -39,7 +39,7 @@ class Register extends Component {
           </button>
         </div>
         <div className="photo">
-          <img src={pic} alt="xyz" />
+          <img src={pic} alt="" />
         </div>
       </div>
     );
