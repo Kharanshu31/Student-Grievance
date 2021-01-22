@@ -12,6 +12,7 @@ import {
 } from "reactstrap";
 
 import "../css/Navigationbar.css";
+import { Link } from "react-router-dom";
 
 class Navigationbar extends Component {
   constructor(props) {
@@ -60,37 +61,28 @@ class Navigationbar extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav
-              style={{ alignItems: "revert" }}
+              style={{ alignItems: "revert", width: "100%" }}
               navbar
               className="justify-content-end"
-              style={{ width: "100%" }}
             >
               <NavItem>
                 <NavLink
                   className={isScrolled ? "Navlink scrolledNavlink" : "Navlink"}
+                  tag={Link}
+                  to="/"
                   href="/home"
                 >
                   Home
                 </NavLink>
               </NavItem>
+              
               <NavItem>
                 <NavLink
-                  className={isScrolled ? "Navlink scrolledNavlink" : "Navlink"}
-                  href="/About"
+                  tag={Link}
+                  to="/register"
+                  className="Navlink"
+                  href="/register"
                 >
-                  About
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  className={isScrolled ? "Navlink scrolledNavlink" : "Navlink"}
-                  href="/contact"
-                >
-                  Contact
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className="Navlink" href="/register">
                   <ButtonToggle
                     className={isScrolled ? "auth scrolledAuth" : "auth"}
                   >
@@ -99,7 +91,12 @@ class Navigationbar extends Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className="Navlink" href="/login">
+                <NavLink
+                  tag={Link}
+                  to="/login"
+                  className="Navlink"
+                  href="/login"
+                >
                   <ButtonToggle
                     className={isScrolled ? "auth scrolledAuth" : "auth"}
                   >

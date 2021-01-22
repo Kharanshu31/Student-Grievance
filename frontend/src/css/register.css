@@ -1,11 +1,11 @@
 .signUp {
   display: flex;
   justify-content: flex-start;
-  padding-top: 8%;
+  padding-top: 6%;
 }
 
 .photo {
-  margin-left: 3%;
+  margin-left: 8%;
   margin-top: -3%;
 }
 .photo img {
@@ -15,7 +15,7 @@
 
 .signUpForm {
   margin-left: 12%;
-  margin-top: 2%;
+  margin-top: 4%;
 }
 .signUpForm h1 {
   font-family: sans-serif;
