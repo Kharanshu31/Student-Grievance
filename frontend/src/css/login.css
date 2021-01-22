@@ -1,7 +1,7 @@
 .signIn {
   display: flex;
   justify-content: flex-start;
-  padding-top: 5%;
+  padding-top: 8%;
 }
 
 .photo img {
@@ -12,7 +12,7 @@
 
 .signInForm {
   margin-left: 18%;
-  margin-top: 7%;
+  margin-top: 3%;
 }
 .signInForm h1 {
   font-family: sans-serif;

@@ -16,7 +16,7 @@
   color: white !important;
 }
 .Navigation {
-  position: sticky;
+  position: fixed;
   top: 0;
   display: block;
   width: 100%;
