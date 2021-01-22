@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import "./Home.css";
 import Navigationbar from "./Navigationbar";
-import backgroundImg from "../AP.svg";
+import backgroundImg from "../background.svg";
+// import backgroundImg from "../Group.jpg";
 
 
 export default class Home extends Component {
@@ -10,8 +11,6 @@ export default class Home extends Component {
             <section style={{minHeight: "100vh"}}>
              <Navigationbar/>
              <div className="Home">
-
-            
             <div className="Home-svg">
                 <img src={backgroundImg} alt=""/>
             </div>
