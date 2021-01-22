@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Kharanshu31/Student-Grievance/issues"
   },
-  "homepage": "https://github.com/Kharanshu31/Student-Grievance#readme"
+  "homepage": "https://github.com/Kharanshu31/Student-Grievance#readme",
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "react-bootstrap": "^1.4.3"
+  }
 }
