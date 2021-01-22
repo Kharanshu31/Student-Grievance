@@ -4,7 +4,7 @@
 
   display: flex;
   height: 100vh;
-
+  margin-top: -4.8%;
   font-family: "Montserrat", sans-serif;
   position: relative;
 
@@ -40,20 +40,30 @@
 .Home-title {
   font-family: Montserrat;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 800;
+  font-size: 50px;
+  line-height: 70px;
+  margin-bottom: 5%;
+  text-align: right;
+  margin-right: 5%;
+  /* color: #1c468a; */
+  color: #00587a;
+}
+
+.student{
+  color: #FBA70D;
   font-size: 64px;
-  line-height: 78px;
-  margin-bottom: 10%;
-  color: #1c468a;
+  font-weight: 700;
 }
 
 .Home-info {
   font-family: "Montserrat", sans-serif;
   font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
+  /* font-weight: bold; */
+  font-size: 20px;
   line-height: 29px;
-  color: #1c468a;
+  color: #1b6886;
+  /* margin-left: 4%; */
 }
 @media screen and (max-width: 900px) {
   .Home {
