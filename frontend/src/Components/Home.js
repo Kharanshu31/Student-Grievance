@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import "./Home.css";
+import "../css/Home.css";
 import Navigationbar from "./Navigationbar";
-import backgroundImg from "../background.svg";
-// import backgroundImg from "../Group.jpg";
-
+import backgroundImg from "../images/background.svg";
 
 export default class Home extends Component {
     render() {
