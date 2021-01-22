@@ -8,7 +8,8 @@ import {
   NavbarToggler,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  ButtonToggle
 } from 'reactstrap';
 
 const Navigationbar = (props) => {
@@ -18,25 +19,27 @@ const Navigationbar = (props) => {
 
   return (
     <div className="Navigation">
-      <Navbar  light expand="md" className="Navbar ml-auto">
-        
+      <Navbar  light expand="md" className="Navbar ml-auto " style={{fontSize:"24px", fontWeight: "bolder"}} >
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav style={{alignItems:"revert"}} navbar className="justify-content-end" style={{ width: "100%" }}>
             <NavItem>
-              <NavLink className="Navlink" style={{color:"white" }} href="/home">Home</NavLink>
+              <NavLink className="Navlink" style={{color:'#586DA5'}} href="/home">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="Navlink" style={{color:"white" }} href="/howItWorks">How It Works</NavLink>
+              <NavLink className="Navlink" style={{color:'#586DA5'}} href="/About">About</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="Navlink" style={{color:"white" }} href="/contact">Contact</NavLink>
+              <NavLink className="Navlink" style={{color:'#586DA5'}} href="/contact">Contact</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="Navlink" style={{color:"white" }} href="/register">Register</NavLink>
+              <NavLink className="Navlink"  style={{color:'#586DA5'}} href="/register"><ButtonToggle color="primary" style={{fontSize:"18px", fontWeight: "bolder", background: "#1C468A"}}>Register</ButtonToggle>{' '}</NavLink>
+              
             </NavItem>
             <NavItem>
-              <NavLink className="Navlink" style={{color:"white" }} href="/login">Login</NavLink>
+              <NavLink  className="Navlink" href="/login"><ButtonToggle color="primary" style={{fontSize:"18px", fontWeight: "bolder", background: "#1C468A"}}>Login</ButtonToggle></NavLink> 
+              
+              
             </NavItem>
             
           </Nav>

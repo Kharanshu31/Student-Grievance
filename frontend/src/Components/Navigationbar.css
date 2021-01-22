@@ -1,13 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap");
 .Navbar {
-  background-color: #2996a7;
-  font-weight: bold;
+  font-size: large;
+  font-weight: bolder;
   display: flex;
 }
 .Navlink {
-  color: white;
-  font-family: "Roboto";
-  margin-left: 4rem;
+  font-family: Runik;
+  font-style: normal;
+  font-weight: bolder;
+  margin-left: 5rem;
 }
 .Navigation {
   position: fixed;
