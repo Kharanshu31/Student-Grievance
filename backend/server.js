@@ -2,11 +2,17 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const path = require('path');
+const connectDB=require("./config/db");
 
 const app=express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
+
+connectDB();
+
+const userrouter=require('./routes/user')
+app.use("/users",userrouter);
 
 const port=process.env.PORT || 5000;
 
