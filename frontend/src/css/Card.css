@@ -1,0 +1,16 @@
+.card {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  background-color: #fafafa;
+  border: none;
+}
+
+@media screen and (max-width: 900px) {
+  .card {
+    flex-direction: column;
+    align-items: center;
+    grid-gap: 40px;
+  }
+}

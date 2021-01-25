@@ -36,7 +36,7 @@ class Navigationbar extends Component {
     this.setState((prevState) => {
       return {
         ...prevState,
-        isOpen: !prevState.isOpen,
+        isOpen: !prevState,
       };
     });
   };
@@ -56,7 +56,7 @@ class Navigationbar extends Component {
   render() {
     const { isOpen, isScrolled } = this.state;
     return (
-      <div className={isScrolled || isOpen? "Navigation scrolled" : "Navigation"}>
+      <div className={isScrolled ? "Navigation scrolled" : "Navigation"}>
         <Navbar light expand="md" className="Navbar ml-auto">
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
@@ -67,7 +67,7 @@ class Navigationbar extends Component {
             >
               <NavItem>
                 <NavLink
-                  className={isScrolled || isOpen? "Navlink scrolledNavlink" : "Navlink"}
+                  className={isScrolled ? "Navlink scrolledNavlink" : "Navlink"}
                   tag={Link}
                   to="/"
                   href="/home"
@@ -84,7 +84,7 @@ class Navigationbar extends Component {
                   href="/register"
                 >
                   <ButtonToggle
-                    className={isScrolled || isOpen? "auth scrolledAuth" : "auth"}
+                    className={isScrolled ? "auth scrolledAuth" : "auth"}
                   >
                     Register
                   </ButtonToggle>{" "}
@@ -98,7 +98,7 @@ class Navigationbar extends Component {
                   href="/login"
                 >
                   <ButtonToggle
-                    className={isScrolled || isOpen? "auth scrolledAuth" : "auth"}
+                    className={isScrolled ? "auth scrolledAuth" : "auth"}
                   >
                     Login
                   </ButtonToggle>
