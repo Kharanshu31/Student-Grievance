@@ -1,4 +1,5 @@
-
+import { makeStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -34,6 +35,71 @@ const theme = createMuiTheme({
   }
 });
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
+
+const university = [
+  {
+    value: 'DU',
+    label: 'DU',
+  },
+  {
+    value: 'IPU',
+    label: 'IPU',
+  },
+  {
+    value: 'AKTU',
+    label: 'AKTU',
+  },
+  {
+    value: 'CU',
+    label: 'CU',
+  },
+];
+
+const college = [
+  {
+    value: 'Hansraj',
+    label: 'Hansraj',
+  },
+  {
+    value: 'Gargi',
+    label: 'Gargi',
+  },
+  {
+    value: 'MAIT',
+    label: 'MAIT',
+  },
+  {
+    value: 'ABC',
+    label: 'ABC',
+  },
+];
+
+const department = [
+  {
+    value: 'ADMISSION',
+    label: 'ADMISSION',
+  },
+  {
+    value: 'EXAM',
+    label: 'EXAM',
+  },
+  {
+    value: 'TIME TABLE',
+    label: 'TIME TABLE',
+  },
+  {
+    value: 'RE-EVALUATION',
+    label: 'RE-EVALUATION',
+  },
+];
 
 
 class Form extends Component {
@@ -62,11 +128,62 @@ class Form extends Component {
     
       <div className={classes.formDiv} >
       <div >
-        <TextField id="outlined-basic" label="University" variant="outlined" onChange={this.handleChange} value={this.state.university} name='university'/>
-        <TextField id="outlined-basic" label="College" variant="outlined" onChange={this.handleChange} value={this.state.colleges} name='college'/>
+      <TextField
+          id="outlined-select-currency-native"
+          select
+          label="UNIVERSITY"
+          value={String}
+          onChange={this.handleChange}
+          SelectProps={{
+            native: true,
+          }}
+          helperText="Please select your University"
+          variant="outlined"
+        >
+          {university.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+        <TextField
+          id="outlined-select-currency-native"
+          select
+          label="COLLEGE"
+          value={String}
+          onChange={this.handleChange}
+          SelectProps={{
+            native: true,
+          }}
+          helperText="Please select your University"
+          variant="outlined"
+        >
+          {college.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
       </div>
       
-      <TextField id="outlined-basic" label="Department" variant="outlined" onChange={this.handleChange} value={this.state.department} name='department'/>
+      <TextField
+          id="outlined-select-currency-native"
+          select
+          label="DEPARTMENT"
+          value={String}
+          onChange={this.handleChange}
+          SelectProps={{
+            native: true,
+          }}
+          helperText="Please select your University"
+          variant="outlined"
+        >
+          {department.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
 
 
         <TextField id="outlined-basic" label="Title" variant="outlined" onChange={this.handleChange} value={this.state.title} name='title'/>
