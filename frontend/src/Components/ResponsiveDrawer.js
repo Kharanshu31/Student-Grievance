@@ -177,9 +177,6 @@ function ResponsiveDrawer(props) {
 
           {/* main body for content  below */}
           <Dashboard/>
-
-        
-
       </main>
     </div>
   );
