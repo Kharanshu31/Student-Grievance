@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 
+// connect database
 connectDB();
 
 const userrouter=require('./routes/user')
