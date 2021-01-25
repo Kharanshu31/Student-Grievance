@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://admin123:test123@cluster0.tpxxr.mongodb.net/student_grievance?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://admin123:test123@cluster0.tpxxr.mongodb.net/student_grievance?retryWrites=true&w=majority",
+  "jwtSecret": "mySecretToken"
 }
