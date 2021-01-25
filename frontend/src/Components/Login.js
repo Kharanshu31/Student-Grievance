@@ -5,52 +5,71 @@ import axios from "axios";
 import swal from "sweetalert";
 
 class Login extends Component {
+  state = {
+    formData: {
+      email: "",
+      password: "",
+    },
+  };
 
-  state={
-    email:"",
-    password:""
-  }
+  onChange = (e) => {
+    // console.log(e.target.name , e.target.value , this.state)
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        formData: { ...prevState.formData, [e.target.name]: e.target.value },
+      };
+    });
+  };
 
-  handleChangeEmail=(e)=>{
-    const n=e.target.value;
-    this.setState({email:n});
-  }
+  onSubmit = (e) => {
+    const { email, password } = this.state.formData;
 
-  handleChangePassword=(e)=>{
-    const n=e.target.value;
-    this.setState({password:n});
-  }
+    e.preventDefault();
+  };
 
-  loginUser=(e)=>{
-      e.preventDefault();
+  // handleChangeEmail=(e)=>{
+  //   const n=e.target.value;
+  //   this.setState({email:n});
+  // }
 
-      const item={
-        email:this.state.email,
-        password:this.state.password
-      }
+  // handleChangePassword=(e)=>{
+  //   const n=e.target.value;
+  //   this.setState({password:n});
+  // }
 
-      console.log(item);
+  // loginUser=(e)=>{
+  //     e.preventDefault();
 
-      axios.post("http://localhost:5000/users/find",item)
-        .then(response=>{
-          console.log(response.data);
-          if(response.data==="Email does not exist")
-          {
-            swal("Email not found! Please Register").then(()=>window.location.href="/register");
-          }
-          else if(response.data==="Password does not match")
-          {
-            swal("Password does not match");
-          }
-          else
-          {
-            swal("Successfully logged in").then(()=>window.location.href="/");
-            window.localStorage.setItem("_id",response.data._id);
-          }
-        })
-  }
+  //     const item={
+  //       email:this.state.email,
+  //       password:this.state.password
+  //     }
+
+  //     console.log(item);
+
+  //     axios.post("http://localhost:5000/users/find",item)
+  //       .then(response=>{
+  //         console.log(response.data);
+  //         if(response.data==="Email does not exist")
+  //         {
+  //           swal("Email not found! Please Register").then(()=>window.location.href="/register");
+  //         }
+  //         else if(response.data==="Password does not match")
+  //         {
+  //           swal("Password does not match");
+  //         }
+  //         else
+  //         {
+  //           swal("Successfully logged in").then(()=>window.location.href="/");
+  //           window.localStorage.setItem("_id",response.data._id);
+  //         }
+  //       })
+  // }
 
   render() {
+    const { email, password } = this.state.formData;
+
     return (
       <div className="signIn">
         <div className="photo">
@@ -63,13 +82,27 @@ class Login extends Component {
             Welcome Back
           </h1>
 
-          <form onSubmit={this.loginUser}>
-            <input type="email" name="email" placeholder="email" onChange={this.handleChangeEmail} required />
+          <form onSubmit={(e) => this.onSubmit(e)}>
+            <input
+              type="email"
+              name="email"
+              placeholder="email"
+              value={email}
+              onChange={(e) => {
+                this.onChange(e);
+              }}
+              //  onChange={this.handleChangeEmail}
+              required
+            />
             <input
               type="password"
               name="password"
               placeholder="password"
-              onChange={this.handleChangePassword}
+              value={password}
+              onChange={(e) => {
+                this.onChange(e);
+              }}
+              // onChange={this.handleChangePassword}
               required
             />
 
