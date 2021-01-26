@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import store from "../store";
 import setAuthToken from "../utils/setAuthToken";
 import { loadUser } from "../actions/auth";
+import Form from "./Form"
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -37,6 +38,9 @@ function App() {
         </div>
       </Router>
     </Provider>
+    
+
+  
   );
 }
 
