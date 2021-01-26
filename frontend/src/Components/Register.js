@@ -32,7 +32,7 @@ class Register extends Component {
     e.preventDefault();
 
     if (password !== confirm_password) {
-      console.log("dhc");
+      console.log("Password doesn't match");
     } else {
       this.props.dispatch(register({ name, email, password }));
     }
@@ -93,7 +93,7 @@ class Register extends Component {
     // Redirect if logged in
 
     if(isAuthenticated){
-      return <Redirect to="/dashboard" />
+      return <Redirect to="/login" />
     }
     return (
       <div className="signUp">
