@@ -9,7 +9,7 @@ const Complaint=require('../../models/complaint');
 router.get('/', auth, async (req,res)=>{
     try {
         const complaints=await Complaint.find({user:req.user.id});
-        if(complaints.isEmpty()){
+        if(!complaints){
             return res.json({msg:'No Grievance Posted Yet!'});
         }
         res.status(200).json(complaints);
