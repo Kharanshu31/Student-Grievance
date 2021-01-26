@@ -5,7 +5,6 @@ import Page404 from "./Page404";
 import React from "react";
 import Navigationbar from "./Navigationbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ResponsiveDrawer from "./ResponsiveDrawer"
 
 function App() {
   return (
@@ -20,8 +19,6 @@ function App() {
         </Switch>
       </div>
     </Router>
-    // {/* <ResponsiveDrawer/> */}
-    
   );
 }
 
