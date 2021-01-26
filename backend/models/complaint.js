@@ -6,8 +6,9 @@ const ComplaintSchema = new Schema(
   {
 
     user:{
-        id:Schema.Types.ObjectId
+        type:Schema.Types.ObjectId
     },
+    
     description:{
         type:String,
         required:true
