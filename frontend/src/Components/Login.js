@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import pic from "../images/8576.jpg";
+import {Redirect} from 'react-router-dom' ;
 import "../css/login.css";
-import axios from "axios";
+import { connect } from "react-redux";
+import { login } from "../actions/auth";
+// import axios from "axios";
 import swal from "sweetalert";
 
 class Login extends Component {
@@ -22,10 +25,12 @@ class Login extends Component {
     });
   };
 
-  onSubmit = (e) => {
+  onSubmit = async (e) => {
     const { email, password } = this.state.formData;
 
     e.preventDefault();
+
+    this.props.dispatch(login(email, password));
   };
 
   // handleChangeEmail=(e)=>{
@@ -70,6 +75,13 @@ class Login extends Component {
   render() {
     const { email, password } = this.state.formData;
 
+    const { isAuthenticated } = this.props.auth ;
+
+    // Redirect if logged in
+
+    if(isAuthenticated){
+      return <Redirect to="/dashboard" />
+    }
     return (
       <div className="signIn">
         <div className="photo">
@@ -120,4 +132,10 @@ class Login extends Component {
   }
 }
 
-export default Login;
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+export default connect(mapStateToProps)(Login);

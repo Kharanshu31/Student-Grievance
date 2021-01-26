@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import pic from "../images/contact.jpg";
+import {Redirect} from 'react-router-dom' ;
 import "../css/register.css";
 import { connect } from "react-redux";
 import { register } from "../actions/auth";
@@ -87,6 +88,13 @@ class Register extends Component {
 
   render() {
     const { name, email, password, confirm_password } = this.state.formData;
+    const { isAuthenticated } = this.props.auth ;
+
+    // Redirect if logged in
+
+    if(isAuthenticated){
+      return <Redirect to="/dashboard" />
+    }
     return (
       <div className="signUp">
         <div className="signUpForm">
@@ -149,4 +157,10 @@ class Register extends Component {
   }
 }
 
-export default connect()(Register);
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+export default connect(mapStateToProps)(Register);
