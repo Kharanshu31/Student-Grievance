@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const ComplaintSchema = new Schema(
   {
-    
+
     user:{
         id:Schema.Types.ObjectId
     },
@@ -31,13 +31,13 @@ const ComplaintSchema = new Schema(
     issue:{
         type:String,
         required:true
-    } 
+    }
   },
   {
     timestamps: true,
   }
 );
 
-const Complaint = mongoose.model("User", ComplaintSchema);
+const Complaint = mongoose.model("Complaint", ComplaintSchema);
 
 module.exports =Complaint;
