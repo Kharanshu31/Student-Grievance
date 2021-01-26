@@ -61,7 +61,8 @@ router.post('/',[auth,
            department:req.body.department,
            college:req.body.college,
            university:req.body.university,
-           issue:req.body.issue
+           status:false
+
        });
     
        const complaint=await newGrivance.save();

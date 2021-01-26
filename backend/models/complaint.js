@@ -29,9 +29,8 @@ const ComplaintSchema = new Schema(
         type:String,
         required:true
     },
-    issue:{
-        type:String,
-        required:true
+    status:{
+        type:Boolean
     }
   },
   {
