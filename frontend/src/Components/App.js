@@ -5,7 +5,7 @@ import Page404 from "./Page404";
 import React, { useEffect } from "react";
 import Navigationbar from "./Navigationbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import ResponsiveDrawer from "./ResponsiveDrawer";
 // redux
 import { Provider } from "react-redux";
 import store from "../store";

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import CardBlock from "./CardBlock"
-import "../css/Card.css"
+import CardBlock from "./Cardblock.js"
+
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
