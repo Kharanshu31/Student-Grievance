@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import pic from "../images/contact.jpg";
 import "../css/register.css";
-import axios from "axios";
+import { connect } from "react-redux";
+import { register } from "../actions/auth";
+// import axios from "axios";
 import swal from "sweetalert";
 
 class Register extends Component {
@@ -15,7 +17,6 @@ class Register extends Component {
   };
 
   onChange = (e) => {
-    // console.log(e.target.name , e.target.value , this.state)
     this.setState((prevState) => {
       return {
         ...prevState,
@@ -32,7 +33,7 @@ class Register extends Component {
     if (password !== confirm_password) {
       console.log("dhc");
     } else {
-      console.log(this.state.formData);
+      this.props.dispatch(register({ name, email, password }));
     }
   };
   // handleChangeName = (e) => {
@@ -148,4 +149,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default connect()(Register);

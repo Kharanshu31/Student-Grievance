@@ -2,15 +2,27 @@ import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
 import Page404 from "./Page404";
-import React from "react";
+import React, { useEffect } from "react";
 import Navigationbar from "./Navigationbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // redux
 import { Provider } from "react-redux";
-import store from '../store';
+import store from "../store";
+import setAuthToken from "../utils/setAuthToken";
+import { loadUser } from "../actions/auth";
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 function App() {
+
+  // component did mount
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>
