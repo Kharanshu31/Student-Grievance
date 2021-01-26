@@ -24,20 +24,19 @@ function App() {
   }, []);
 
   return (
-    // <Provider store={store}>
-    //   <Router>
-    //     <div>
-    //       <Navigationbar />
-    //       <Switch>
-    //         <Route exact path="/" component={Home} />
-    //         <Route path="/login" component={Login} />
-    //         <Route path="/register" component={Register} />
-    //         <Route component={Page404} />
-    //       </Switch>
-    //     </div>
-    //   </Router>
-    // </Provider>
-    <ResponsiveDrawer/>
+    <Provider store={store}>
+      <Router>
+        <div>
+          <Navigationbar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route component={Page404} />
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
