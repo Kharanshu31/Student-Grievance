@@ -33,14 +33,15 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/dashboard" component={ResponsiveDrawer} />
             <Route component={Page404} />
           </Switch>
         </div>
       </Router>
     </Provider>
-    
 
-  
+
+
   );
 }
 
