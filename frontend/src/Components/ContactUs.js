@@ -5,7 +5,7 @@ import "../css/contact.css";
 const ContactUs = () => {
 
     return (
-        <section style={{ minHeight: "100vh" }}>
+        <section style={{ minHeight: "80vh" }}>
             <script src="https://kit.fontawesome.com/384ff20d77.js" crossorigin="anonymous"></script>
             <div className="contact">
                 <div>
@@ -13,7 +13,7 @@ const ContactUs = () => {
                 </div>
                 <div>
                 <i class="fas fa-phone-square"></i>
-                
+
                 </div>
             </div>
         </section>

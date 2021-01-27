@@ -13,6 +13,7 @@
   font-family: "Montserrat", sans-serif;
   position: relative;
   padding: 0 5%;
+  
 }
 
 .Working h1 {
@@ -27,4 +28,6 @@
   margin-bottom: 5%;
   color: rgb(32, 56, 5);
   position: absolute;
+  padding-bottom: 10%;
+  display: flex;
 }
