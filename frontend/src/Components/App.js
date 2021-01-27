@@ -7,8 +7,7 @@ import Navigationbar from "./Navigationbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ResponsiveDrawer from "./ResponsiveDrawer";
 // redux
-import { Provider } from "react-redux";
-import store from "../store";
+import { connect } from "react-redux";
 import setAuthToken from "../utils/setAuthToken";
 import { loadUser } from "../actions/auth";
 import Form from './Form';
@@ -17,15 +16,15 @@ if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
-function App() {
+function App(props) {
 
   // component did mount
   useEffect(() => {
-    store.dispatch(loadUser());
+    props.dispatch(loadUser());
   }, []);
 
   return (
-    <Provider store={store}>
+    
       <Router>
         <div>
           <Navigationbar />
@@ -39,8 +38,14 @@ function App() {
           </Switch>
         </div>
       </Router>
-    </Provider>
+    
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+export default connect(mapStateToProps)(App);

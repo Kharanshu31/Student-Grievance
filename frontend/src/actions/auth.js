@@ -7,6 +7,7 @@ import {
   REGISTER_FAIL,
   REGISTER_SUCCESS,
   USER_LOADED,
+  LOGOUT
 } from "./actionTypes";
 
 // Load user
@@ -94,4 +95,8 @@ export const login = (email, password ) => {
       });
     }
   };
+};
+
+export const logout = () => (dispatch) => {
+  dispatch({ type: LOGOUT });
 };

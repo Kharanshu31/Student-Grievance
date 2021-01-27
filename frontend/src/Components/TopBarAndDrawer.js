@@ -22,7 +22,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import useStyles from './ResponiveDrawerStyles';
-
+import { logout } from "../actions/auth";
 import {Redirect,withRouter} from 'react-router-dom' ;
 import { connect } from "react-redux";
 import {getcomplaint} from "../actions/complaint";
@@ -45,8 +45,12 @@ function TopBarAndDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
+  const handleLogOut=()=>{
+    props.dispatch(logout());
+  };
+
   useEffect(() => {
-    props.getcomplaint();
+    props.dispatch(getcomplaint());
 
     props.complaint.complaints.map(el=>{
         //console.log(el);
@@ -61,7 +65,7 @@ function TopBarAndDrawer(props) {
         //setComplaintLength(props.complaint.complaints.length)
     })
 
-  }, [getcomplaint]);
+  },[]);
 
   useEffect(() => {
     // console.log('running');
@@ -153,6 +157,7 @@ function TopBarAndDrawer(props) {
 
 
           <Button
+          onClick={handleLogOut}
         variant="contained"
         color="secondary"
         className={classes.button}
@@ -212,4 +217,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(mapStateToProps,{getcomplaint})(TopBarAndDrawer));
+export default withRouter(connect(mapStateToProps)(TopBarAndDrawer));
