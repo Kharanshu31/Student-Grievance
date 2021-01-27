@@ -4,7 +4,6 @@ import {Redirect} from 'react-router-dom' ;
 import "../css/register.css";
 import { connect } from "react-redux";
 import { register } from "../actions/auth";
-// import axios from "axios";
 import swal from "sweetalert";
 
 class Register extends Component {
@@ -37,25 +36,6 @@ class Register extends Component {
       this.props.dispatch(register({ name, email, password }));
     }
   };
-  // handleChangeName = (e) => {
-  //   const n = e.target.value;
-  //   this.setState({ name: n });
-  // };
-
-  // handleChangeEmail = (e) => {
-  //   const n = e.target.value;
-  //   this.setState({ email: n });
-  // };
-
-  // handleChangePassword = (e) => {
-  //   const n = e.target.value;
-  //   this.setState({ password: n });
-  // };
-
-  // handleChangeConfirmPassword = (e) => {
-  //   const n = e.target.value;
-  //   this.setState({ confirm_password: n });
-  // };
 
   // addUser=(e)=>{
   //   e.preventDefault();
@@ -109,7 +89,6 @@ class Register extends Component {
               onChange={(e) => {
                 this.onChange(e);
               }}
-              // onChange={this.handleChangeName}
               required
             />
             <input
@@ -117,7 +96,6 @@ class Register extends Component {
               name="email"
               placeholder="Your email"
               value={email}
-              // onChange={this.handleChangeEmail}
               onChange={(e) => this.onChange(e)}
               required
             />
@@ -127,7 +105,6 @@ class Register extends Component {
               placeholder="Your password"
               minLength="6"
               value={password}
-              // onChange={this.handleChangePassword}
               onChange={(e) => this.onChange(e)}
               required
             />
@@ -136,7 +113,6 @@ class Register extends Component {
               name="confirm_password"
               placeholder="Confirm password"
               value={confirm_password}
-              // onChange={this.handleChangeConfirmPassword}
               onChange={(e) => this.onChange(e)}
               required
             />
