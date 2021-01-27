@@ -2,7 +2,9 @@ import React from "react";
 import "../css/Work.css";
 import CardDeck from 'react-bootstrap/CardDeck'
 import Card from "react-bootstrap/Card";
-import "../css/HowItWorks.css";
+import img1 from "../images/login.png";
+import img2 from  "../images/complaint.png"
+import img3 from  "../images/wait.png"
 
 const Workingg = () => {
   return (
@@ -12,7 +14,7 @@ const Workingg = () => {
 
       <CardDeck className="Working-cards">
         <Card>
-          <Card.Img variant="top" src="../images/login.png" />
+          <Card.Img variant="top" src={img1} />
           <Card.Body>
             <Card.Title>Login</Card.Title>
             <Card.Text>
@@ -22,7 +24,7 @@ const Workingg = () => {
         </Card>
 
         <Card>
-          <Card.Img variant="top" src="../images/complaint.png" />
+          <Card.Img variant="top" src={img2} />
           <Card.Body>
             <Card.Title>Register a complaint</Card.Title>
             <Card.Text>Choose the appropriate department and submit your complaint.</Card.Text>
@@ -30,7 +32,7 @@ const Workingg = () => {
         </Card>
 
         <Card>
-          <Card.Img variant="top" src="../images/wait.png" />
+          <Card.Img variant="top" src={img3} />
           <Card.Body>
             <Card.Title>Wait</Card.Title>
             <Card.Text>We will look into your complaint and would try to resolve it at the earliest.</Card.Text>
