@@ -4,15 +4,15 @@
   background-color: #eff8ff;
   display: flex;
   position: relative;
-  height: 80vh;
+  height: 90vh;
   padding: 5%;
 }
 
 .Working-cards {
-  padding-top: 40%;
+ 
   font-family: "Montserrat", sans-serif;
   position: relative;
-  padding: 0 5%;
+  padding: 5%;
   
 }
 
