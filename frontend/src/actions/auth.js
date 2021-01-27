@@ -7,7 +7,6 @@ import {
   REGISTER_FAIL,
   REGISTER_SUCCESS,
   USER_LOADED,
-  LOGOUT,
 } from "./actionTypes";
 
 // Load user
@@ -66,7 +65,7 @@ export const register = ({ name, email, password }) => {
 };
 
 // Login User
-export const login = (email, password) => {
+export const login = (email, password ) => {
   return async (dispatch) => {
     const config = {
       headers: {
@@ -95,8 +94,4 @@ export const login = (email, password) => {
       });
     }
   };
-};
-
-export const logout = () => (dispatch) => {
-  dispatch({ type: LOGOUT });
 };
