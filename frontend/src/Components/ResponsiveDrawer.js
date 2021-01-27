@@ -1,65 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn'; 
-import ErrorIcon from '@material-ui/icons/Error';
-import HomeIcon from '@material-ui/icons/Home';
-import InsertChartIcon from '@material-ui/icons/InsertChart';
-import Button from '@material-ui/core/Button';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import Dashboard from "./Dashboard"
+import React from "react";
+import PropTypes from "prop-types";
+import AppBar from "@material-ui/core/AppBar";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import Hidden from "@material-ui/core/Hidden";
+import IconButton from "@material-ui/core/IconButton";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import MailIcon from "@material-ui/icons/Mail";
+import MenuIcon from "@material-ui/icons/Menu";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import ErrorIcon from "@material-ui/icons/Error";
+import HomeIcon from "@material-ui/icons/Home";
+import InsertChartIcon from "@material-ui/icons/InsertChart";
+import Button from "@material-ui/core/Button";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import Dashboard from "./Dashboard";
+import { connect } from "react-redux";
+import { logout } from "../actions/auth";
+import { Redirect } from "react-router-dom";
 
 const drawerWidth = 300;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-  },
-  appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-  button: {
-    margin: theme.spacing(1),
-  }
-}));
 
 function ResponsiveDrawer(props) {
   const { window } = props;
@@ -73,46 +40,73 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-    
       <div className={classes.toolbar} />
       <Divider />
-      <h1 style={{marginLeft: "20px", fontSize: "36px", fontWeight:"200"}}>Rahul Kaushik</h1>
-      <h2 style={{marginLeft: "20px", fontSize: "18px", fontWeight:"bold"}}>User</h2>
+      <h1 style={{ marginLeft: "20px", fontSize: "36px", fontWeight: "200" }}>
+        Rahul Kaushik
+      </h1>
+      <h2 style={{ marginLeft: "20px", fontSize: "18px", fontWeight: "bold" }}>
+        User
+      </h2>
       <Divider />
       <List>
-        {['Dashboard', 'Submit New Complaint', 'Report'].map((text, index) => (
+        {["Dashboard", "Submit New Complaint", "Report"].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index === 0 ? <HomeIcon/> : index === 1 ? <MailIcon/> : <InsertChartIcon/>}</ListItemIcon>
+            <ListItemIcon>
+              {index === 0 ? (
+                <HomeIcon />
+              ) : index === 1 ? (
+                <MailIcon />
+              ) : (
+                <InsertChartIcon />
+              )}
+            </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
       <Divider />
       <List>
-        {['Completed', 'Pending'].map((text, index) => (
+        {["Completed", "Pending"].map((text, index) => (
           <ListItem key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <AssignmentTurnedInIcon style={{color:"green"}}/> : <ErrorIcon style={{color:"red"}} />}</ListItemIcon>
-            <ListItemText primary={`${text} : ${0}`}/>
+            <ListItemIcon>
+              {index % 2 === 0 ? (
+                <AssignmentTurnedInIcon style={{ color: "green" }} />
+              ) : (
+                <ErrorIcon style={{ color: "red" }} />
+              )}
+            </ListItemIcon>
+            <ListItemText primary={`${text} : ${0}`} />
           </ListItem>
         ))}
       </List>
     </div>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const handleLogout = () => {
+    props.dispatch(logout());
+  };
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
+  const { isAuthenticated } = props.auth;
+
+  if(!isAuthenticated){
+    return <Redirect to="/login" />
+  }
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} >
-        <Toolbar style={
-            {
-                backgroundColor:'black',
-                display:'flex',
-                justifyContent:'space-between'
-
-            }
-        }>
+      <AppBar position="fixed" className={classes.appBar}>
+        <Toolbar
+          style={{
+            backgroundColor: "black",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -125,28 +119,25 @@ function ResponsiveDrawer(props) {
           <Typography variant="h6" noWrap>
             Grievance Portal
           </Typography>
-   
 
-       
           <Button
-        variant="contained"
-        color="secondary"
-        className={classes.button}
-        endIcon={<ExitToAppIcon />}
-      >
-        Sign Out
-      </Button>
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            endIcon={<ExitToAppIcon />}
+            onClick={handleLogout}
+          >
+            Sign Out
+          </Button>
         </Toolbar>
-
       </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders" >
+      <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
-
             container={container}
             variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            anchor={theme.direction === "rtl" ? "right" : "left"}
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
@@ -174,8 +165,8 @@ function ResponsiveDrawer(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
 
-          {/* main body for content  below */}
-          <Dashboard/>
+        {/* main body for content  below */}
+        <Dashboard />
       </main>
     </div>
   );
@@ -189,4 +180,46 @@ ResponsiveDrawer.propTypes = {
   window: PropTypes.func,
 };
 
-export default ResponsiveDrawer;
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+  },
+  drawer: {
+    [theme.breakpoints.up("sm")]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
+  appBar: {
+    [theme.breakpoints.up("sm")]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+    },
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
+  },
+  // necessary for content to be below app bar
+  toolbar: theme.mixins.toolbar,
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+export default connect(mapStateToProps)(ResponsiveDrawer);
