@@ -23,13 +23,13 @@ const ImgMediaCard = props => {
   const classes = useStyles();
 
   return (
-      
-   
+
+
     <Card className={classes.root}>
 
         <CardContent style={{backgroundColor: props.color1}} >
           <Typography gutterBottom variant="h2" component="h2" style={{color: "white", fontSize:"64px"} }>
-            0  {props.icon}
+            {props.count}  {props.icon}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p" style={{color: "white", fontSize:"20px"}}>
             {props.type}

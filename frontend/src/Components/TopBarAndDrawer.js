@@ -38,7 +38,7 @@ function TopBarAndDrawer(props) {
   const [loading,setloading]=useState(true);
   const [pending,setPending]=useState(0);
   const [completed,setCompleted]=useState(0);
-  const [complaintsLength,setComplaintLength]=useState(0);
+  // const [complaintsLength,setComplaintLength]=useState(0);
 
 
   const handleDrawerToggle = () => {
