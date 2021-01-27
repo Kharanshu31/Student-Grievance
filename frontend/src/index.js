@@ -4,11 +4,13 @@ import './index.css';
 import App from './Components/App.js';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ResponsiveDrawer from "./Components/ResponsiveDrawer";
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <App/>
+  </React.StrictMode>, 
   document.getElementById('root')
 );
 

@@ -9,16 +9,15 @@ export default class Dashboard extends Component {
     render() {
         return (
             <>
-        <Typography style={{ display:"flex", justifyContent:"center"}}>
-            <h1 >Dashboard</h1>
-        </Typography>
-        
-        <Divider style={{ margin:"20px" }}/>
-        <div id="card" >
-        <CardBlock/>
-        </div>
-        
-        <Divider style={{ margin:"20px" }}/>
+                <Typography style={{ display:"flex", justifyContent:"center"}}>
+                    <h1 >Dashboard</h1>
+                </Typography>
+                
+                <Divider style={{ margin:"20px" }}/>
+                <div id="card" >
+                    <CardBlock/>
+                </div>
+                <Divider style={{ margin:"20px" }}/>
                 
             </>
 
