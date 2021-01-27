@@ -4,45 +4,48 @@ import Register from "./Register";
 import Page404 from "./Page404";
 import React, { useEffect } from "react";
 import Navigationbar from "./Navigationbar";
+import { connect } from "react-redux";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ResponsiveDrawer from "./ResponsiveDrawer";
 // redux
-import { Provider } from "react-redux";
-import store from "../store";
+
 import setAuthToken from "../utils/setAuthToken";
 import { loadUser } from "../actions/auth";
-import Form from "./Form"
+import Form from "./Form";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
-function App() {
-
+function App(props) {
   // component did mount
   useEffect(() => {
-    store.dispatch(loadUser());
+    props.dispatch(loadUser());
   }, []);
 
+
   return (
-    <Provider store={store}>
-      <Router>
-        <div>
-          <Navigationbar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/dashboard" component={ResponsiveDrawer} />
-            <Route component={Page404} />
-          </Switch>
-        </div>
-      </Router>
-    </Provider>
-
-
-
+    <Router>
+      <div>
+        
+        <Navigationbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/dashboard" component={ResponsiveDrawer} />
+          <Route component={Page404} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+export default connect(mapStateToProps)(App);
