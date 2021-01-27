@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap");
+
+.Working {
+  background-color: #eff8ff;
+  display: flex;
+  position: relative;
+  height: 90vh;
+  padding: 5%;
+}
+
+.Working-cards {
+ 
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+  padding: 5%;
+  
+}
+
+.Working h1 {
+  /* padding: 5% 0 0 0; */
+  align-items: center;
+  text-align: center;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 50px;
+  line-height: 70px;
+  margin-bottom: 5%;
+  color: rgb(32, 56, 5);
+  position: absolute;
+  padding-bottom: 10%;
+  display: flex;
+}

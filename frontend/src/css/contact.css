@@ -1,0 +1,16 @@
+.contact {
+  /* background-color: #ffa45b; */
+  position: relative;
+  display:flex;
+  height : 80vh;
+}
+
+.contact img {
+    object-fit: cover;
+    display :inherit;
+    width: 100%;
+    height : 100%;
+    
+    
+}
+

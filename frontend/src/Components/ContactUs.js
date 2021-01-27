@@ -1,23 +1,22 @@
 import React from 'react';
-import Jumbotron from 'react-bootstrap/Jumbotron'
-
+import image from '../images/contact-us.jpg';
+import "../css/contact.css";
 
 const ContactUs = () => {
 
     return (
-        <div>       
-            <Jumbotron>
-            <h1>Contact Us</h1>
-            <p>
-                   Contact @ 9000000000000000 or email us at help@ehreirjlek.com
-             </p>
-            
-           
-            <p>
+        <section style={{ minHeight: "80vh" }}>
+            <script src="https://kit.fontawesome.com/384ff20d77.js" crossorigin="anonymous"></script>
+            <div className="contact">
+                <div>
+                    <img src={image} alt="" />
+                </div>
+                <div>
+                <i class="fas fa-phone-square"></i>
 
-            </p>
-        </Jumbotron>
-        </div>
+                </div>
+            </div>
+        </section>
 
     );
 }
