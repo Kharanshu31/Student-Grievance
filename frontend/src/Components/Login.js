@@ -4,6 +4,7 @@ import {Redirect} from 'react-router-dom' ;
 import "../css/login.css";
 import { connect } from "react-redux";
 import { login } from "../actions/auth";
+// import axios from "axios";
 import swal from "sweetalert";
 
 class Login extends Component {
@@ -15,6 +16,7 @@ class Login extends Component {
   };
 
   onChange = (e) => {
+    // console.log(e.target.name , e.target.value , this.state)
     this.setState((prevState) => {
       return {
         ...prevState,
@@ -30,6 +32,16 @@ class Login extends Component {
 
     this.props.dispatch(login(email, password));
   };
+
+  // handleChangeEmail=(e)=>{
+  //   const n=e.target.value;
+  //   this.setState({email:n});
+  // }
+
+  // handleChangePassword=(e)=>{
+  //   const n=e.target.value;
+  //   this.setState({password:n});
+  // }
 
   // loginUser=(e)=>{
   //     e.preventDefault();
@@ -91,6 +103,7 @@ class Login extends Component {
               onChange={(e) => {
                 this.onChange(e);
               }}
+              //  onChange={this.handleChangeEmail}
               required
             />
             <input
@@ -101,6 +114,7 @@ class Login extends Component {
               onChange={(e) => {
                 this.onChange(e);
               }}
+              // onChange={this.handleChangePassword}
               required
             />
 
