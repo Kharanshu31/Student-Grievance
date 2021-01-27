@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {postcomplaint} from '../actions/complaint';
+import { connect } from "react-redux";
 
 import React, { Component } from 'react'
 
@@ -46,6 +48,17 @@ class Form extends Component {
       complaint: ""
   };
 
+
+  onSubmit=(e)=>{
+    const { university, college, department, title,complaint } = this.state;
+
+    e.preventDefault();
+
+     
+      this.props.dispatch(postcomplaint({ university, college, department, title,complaint }));
+   
+  }
+
   handleChange = (evt) => {
       console.log(evt.target.value);
     this.setState({
@@ -58,7 +71,7 @@ class Form extends Component {
   return (
 
       <MuiThemeProvider theme={theme} >
-    <form className={classes.root} noValidate autoComplete="off" >
+    <form className={classes.root} noValidate autoComplete="off" onSubmit={(e)=>this.onSubmit(e)}>
     
       <div className={classes.formDiv} >
       <div >
@@ -85,6 +98,7 @@ class Form extends Component {
         />
     
         <Button
+        type="submit"
         variant="contained"
         color="secondary"
         className={classes.button}
@@ -99,4 +113,4 @@ class Form extends Component {
         }
 }
 
-export default withStyles(styles, { withTheme: true })(Form);
+export default connect()(withStyles(styles, { withTheme: true })(Form));

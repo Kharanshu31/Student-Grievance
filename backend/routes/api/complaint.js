@@ -43,11 +43,11 @@ router.get('/:id',auth,async (req,res)=>{
 
 router.post('/',[auth,
     check('title','Title is required!').not().isEmpty(),
-    check('description','Description is required!').not().isEmpty(),
+    check('complaint','Complaint is required!').not().isEmpty(),
     check('department','Department is required!').not().isEmpty(),
     check('university','University is required!').not().isEmpty(),
-    check('college','College is required!').not().isEmpty(),
-    check('issue','Issue is required!').not().isEmpty()
+    check('college','College is required!').not().isEmpty()
+    
 ], async(req,res)=>{
     const errors =validationResult(req);
    if(!errors.isEmpty()){
@@ -57,7 +57,7 @@ router.post('/',[auth,
        const newGrivance=new Complaint({
            user:req.user.id,
            title:req.body.title,
-           description:req.body.description,
+           description:req.body.complaint,
            department:req.body.department,
            college:req.body.college,
            university:req.body.university,

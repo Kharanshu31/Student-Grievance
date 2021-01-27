@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import store from "../store";
 import setAuthToken from "../utils/setAuthToken";
 import { loadUser } from "../actions/auth";
+import Form from './Form';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -33,6 +34,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/dashboard" component={ResponsiveDrawer} />
+            <Route path="/submit" component={Form} />
             <Route component={Page404} />
           </Switch>
         </div>
