@@ -10,7 +10,7 @@ router.get('/', auth, async (req,res)=>{
     try {
         const complaints=await Complaint.find({user:req.user.id});
         if(!complaints){
-            return res.json({msg:'No Grievance Posted Yet!'});
+            return res.json([]);
         }
         res.status(200).json(complaints);
 
@@ -32,7 +32,7 @@ router.get('/:id',auth,async (req,res)=>{
     } catch (error) {
         if(error.kind==='ObjectId'){
             return res.status(404).json({msg:'No such grievance found!'});
-            
+
         }
         console.log(error.message);
         res.status(500).send('Server Error!');
@@ -47,7 +47,7 @@ router.post('/',[auth,
     check('department','Department is required!').not().isEmpty(),
     check('university','University is required!').not().isEmpty(),
     check('college','College is required!').not().isEmpty()
-    
+
 ], async(req,res)=>{
     const errors =validationResult(req);
    if(!errors.isEmpty()){
@@ -64,7 +64,7 @@ router.post('/',[auth,
            status:false
 
        });
-    
+
        const complaint=await newGrivance.save();
        res.json(complaint);
    } catch (error) {

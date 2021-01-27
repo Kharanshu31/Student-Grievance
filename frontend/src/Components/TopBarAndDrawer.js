@@ -25,6 +25,7 @@ import useStyles from './ResponiveDrawerStyles';
 
 import {Redirect,withRouter} from 'react-router-dom' ;
 import { connect } from "react-redux";
+import {getcomplaint} from "../actions/complaint";
 
 
 function TopBarAndDrawer(props) {
@@ -35,6 +36,9 @@ function TopBarAndDrawer(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [username, setUsername] = useState("Unknown");
   const [loading,setloading]=useState(true);
+  const [pending,setPending]=useState(0);
+  const [completed,setCompleted]=useState(0);
+  const [complaintsLength,setComplaintLength]=useState(0);
 
 
   const handleDrawerToggle = () => {
@@ -50,6 +54,29 @@ function TopBarAndDrawer(props) {
       setloading(false);
     }
   },[props.auth.user]);
+
+  useEffect(() => {
+    props.getcomplaint()
+  }, [getcomplaint]);
+
+  useEffect(()=>{
+        console.log(props.complaint.complaints);
+  },[props.complaint.complaints])
+
+  useEffect(()=>{
+    props.complaint.complaints.map(el=>{
+        //console.log(el);
+        if(el.status)
+        {
+          setCompleted(prevstate=>prevstate+1)
+        }
+        else
+        {
+          setPending(prevstate=>prevstate+1)
+        }
+        setComplaintLength(props.complaint.complaints.length)
+    })
+  },[props.complaint])
 
   if(!props.auth.isAuthenticated)
   {
@@ -75,12 +102,23 @@ function TopBarAndDrawer(props) {
       </List>
       <Divider />
       <List>
-        {['Completed', 'Pending'].map((text, index) => (
+        {/* {['Completed', 'Pending'].map((text, index) => (
           <ListItem key={text}>
             <ListItemIcon>{index % 2 === 0 ? <AssignmentTurnedInIcon style={{color:"green"}}/> : <ErrorIcon style={{color:"red"}} />}</ListItemIcon>
             <ListItemText primary={`${text} : ${0}`}/>
           </ListItem>
-        ))}
+        ))} */}
+
+        <ListItem key='Completed'>
+          <ListItemIcon><AssignmentTurnedInIcon style={{color:"green"}}/></ListItemIcon>
+          <ListItemText primary={`Completed : ${completed/complaintsLength}`}/>
+        </ListItem>
+
+        <ListItem key='Pending'>
+          <ListItemIcon><ErrorIcon style={{color:"red"}} /></ListItemIcon>
+          <ListItemText primary={`Pending : ${pending/complaintsLength}`}/>
+        </ListItem>
+
       </List>
     </div>
   );
@@ -170,7 +208,8 @@ TopBarAndDrawer.propTypes = {
 function mapStateToProps(state) {
   return {
     auth: state.auth,
+    complaint:state.complaint
   };
 }
 
-export default withRouter(connect(mapStateToProps)(TopBarAndDrawer));
+export default withRouter(connect(mapStateToProps,{getcomplaint})(TopBarAndDrawer));
