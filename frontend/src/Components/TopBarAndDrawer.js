@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React,{useState,useEffect} from 'react';
+import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -14,33 +14,55 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn'; 
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import ErrorIcon from '@material-ui/icons/Error';
 import HomeIcon from '@material-ui/icons/Home';
 import InsertChartIcon from '@material-ui/icons/InsertChart';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import useStyles from './ResponiveDrawerStyles'
+import useStyles from './ResponiveDrawerStyles';
+
+import {Redirect,withRouter} from 'react-router-dom' ;
+import { connect } from "react-redux";
 
 
-export default function TopBarAndDrawer(props) {
+function TopBarAndDrawer(props) {
     const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
 
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [username, setUsername] = useState("Unknown");
+  const [loading,setloading]=useState(true);
+
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  useEffect(() => {
+    // console.log('running');
+    if(props.auth.user && props.auth.token)
+    {
+      console.log(props.auth);
+      setUsername(props.auth.user.name)
+      setloading(false);
+    }
+  },[props.auth.user]);
+
+  if(!props.auth.isAuthenticated)
+  {
+    return <Redirect to="/login" />
+  }
+
+
     const drawer = (
     <div>
-    
+
       <div className={classes.toolbar} />
       <Divider />
-      <h1 style={{marginLeft: "20px", fontSize: "36px", fontWeight:"200"}}>Rahul Kaushik</h1>
+      <h1 style={{marginLeft: "20px", fontSize: "36px", fontWeight:"200"}}>{username}</h1>
       <h2 style={{marginLeft: "20px", fontSize: "18px", fontWeight:"bold"}}>User</h2>
       <Divider />
       <List>
@@ -89,9 +111,9 @@ export default function TopBarAndDrawer(props) {
           <Typography variant="h6" noWrap>
             Grievance Portal
           </Typography>
-   
 
-       
+
+
           <Button
         variant="contained"
         color="secondary"
@@ -103,7 +125,7 @@ export default function TopBarAndDrawer(props) {
         </Toolbar>
 
     </AppBar>
-    
+
       <nav className={classes.drawer} aria-label="mailbox folders" >
         <Hidden smUp implementation="css">
           <Drawer
@@ -135,7 +157,20 @@ export default function TopBarAndDrawer(props) {
           </Drawer>
         </Hidden>
       </nav>
-            
+
         </>
     )
 }
+
+TopBarAndDrawer.propTypes = {
+   auth:PropTypes.object,
+  window: PropTypes.func
+};
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(TopBarAndDrawer));
