@@ -46,24 +46,8 @@ function TopBarAndDrawer(props) {
   };
 
   useEffect(() => {
-    // console.log('running');
-    if(props.auth.user && props.auth.token)
-    {
-      console.log(props.auth);
-      setUsername(props.auth.user.name)
-      setloading(false);
-    }
-  },[props.auth.user]);
+    props.getcomplaint();
 
-  useEffect(() => {
-    props.getcomplaint()
-  }, [getcomplaint]);
-
-  useEffect(()=>{
-        console.log(props.complaint.complaints);
-  },[props.complaint.complaints])
-
-  useEffect(()=>{
     props.complaint.complaints.map(el=>{
         //console.log(el);
         if(el.status)
@@ -74,9 +58,25 @@ function TopBarAndDrawer(props) {
         {
           setPending(prevstate=>prevstate+1)
         }
-        setComplaintLength(props.complaint.complaints.length)
+        //setComplaintLength(props.complaint.complaints.length)
     })
-  },[props.complaint])
+
+  }, [getcomplaint]);
+
+  useEffect(() => {
+    // console.log('running');
+    if(props.auth.user && props.auth.token)
+    {
+      console.log(props.auth);
+      setUsername(props.auth.user.name)
+      setloading(false);
+    }
+  },[props.auth.user]);
+
+
+  // useEffect(()=>{
+  //       console.log(props.complaint.complaints);
+  // },[props.complaint.complaints])
 
   if(!props.auth.isAuthenticated)
   {
@@ -111,12 +111,12 @@ function TopBarAndDrawer(props) {
 
         <ListItem key='Completed'>
           <ListItemIcon><AssignmentTurnedInIcon style={{color:"green"}}/></ListItemIcon>
-          <ListItemText primary={`Completed : ${completed/complaintsLength}`}/>
+          <ListItemText primary={`Completed : ${completed}`}/>
         </ListItem>
 
         <ListItem key='Pending'>
           <ListItemIcon><ErrorIcon style={{color:"red"}} /></ListItemIcon>
-          <ListItemText primary={`Pending : ${pending/complaintsLength}`}/>
+          <ListItemText primary={`Pending : ${pending}`}/>
         </ListItem>
 
       </List>
