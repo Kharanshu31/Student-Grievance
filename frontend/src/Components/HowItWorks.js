@@ -8,9 +8,13 @@ import img3 from  "../images/wait.png"
 
 const Workingg = () => {
   return (
-    <div className="Working">
+    <section className="Working" style={{ minHeight: "100vh" }}>
+      <div>
       <h1>How It Works?</h1>
-
+      </div>
+      <p></p>
+      <p></p>
+   
 
       <CardDeck className="Working-cards">
         <Card>
@@ -40,7 +44,7 @@ const Workingg = () => {
         </Card>        
       </CardDeck>
 
-    </div>
+    </section>
 
 
   );
