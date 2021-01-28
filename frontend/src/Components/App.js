@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 import setAuthToken from "../utils/setAuthToken";
 import { loadUser } from "../actions/auth";
 import Form from "./Form";
-
+import TopBarAndDrawer from './TopBarAndDrawer';
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -60,7 +60,7 @@ function App(props) {
   return (
     <Router>
       <div>
-        <Navigationbar />
+        {isAuthenticated?<TopBarAndDrawer />:<Navigationbar />}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
