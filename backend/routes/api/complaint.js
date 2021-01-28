@@ -6,6 +6,24 @@ const { check, validationResult } = require("express-validator");
 const Complaint=require('../../models/complaint');
 
 
+router.delete('/:id',auth, async(req,res)=>{
+    try {
+        const complaint=await Complaint.findById(req.params.id);
+        if(!complaint){
+            return res.status(404).json({msg:'No such grievance found!'});
+        }
+        await complaint.remove();
+        res.json({msg:'Complaint Deleted'})
+    } catch (error) {
+        if(error.kind==='ObjectId'){
+            return res.status(404).json({msg:'No such grievance found!'});
+        }
+        console.log(error.message);
+        res.status(500).send('Server Error!');
+    }
+})
+
+
 router.get('/', auth, async (req,res)=>{
     try {
         const complaints=await Complaint.find({user:req.user.id});
