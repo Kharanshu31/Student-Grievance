@@ -53,7 +53,7 @@ function TopBarAndDrawer(props) {
   useEffect(async () => {
     await props.dispatch(getcomplaint());
     //await props.getcomplaint();
-    console.log(props.complaints);
+    //console.log(props.complaints);
     props.complaints.map(el=>{
         //console.log(el);
         if(el.status)

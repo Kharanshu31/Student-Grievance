@@ -35,7 +35,7 @@ function Cardblock(props) {
     useEffect(async () => {
       await props.getcomplaint();
       //await props.getcomplaint();
-      console.log(props.complaints);
+      //console.log(props.complaints);
       props.complaints.map(el=>{
           //console.log(el);
           if(el.status)
