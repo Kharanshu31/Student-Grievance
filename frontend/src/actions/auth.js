@@ -98,5 +98,6 @@ export const login = (email, password ) => {
 };
 
 export const logout = () => (dispatch) => {
+  setAuthToken(null);
   dispatch({ type: LOGOUT });
 };

@@ -30,47 +30,8 @@ class Login extends Component {
 
     e.preventDefault();
 
-    this.props.dispatch(login(email, password));
+    await this.props.dispatch(login(email, password));
   };
-
-  // handleChangeEmail=(e)=>{
-  //   const n=e.target.value;
-  //   this.setState({email:n});
-  // }
-
-  // handleChangePassword=(e)=>{
-  //   const n=e.target.value;
-  //   this.setState({password:n});
-  // }
-
-  // loginUser=(e)=>{
-  //     e.preventDefault();
-
-  //     const item={
-  //       email:this.state.email,
-  //       password:this.state.password
-  //     }
-
-  //     console.log(item);
-
-  //     axios.post("http://localhost:5000/users/find",item)
-  //       .then(response=>{
-  //         console.log(response.data);
-  //         if(response.data==="Email does not exist")
-  //         {
-  //           swal("Email not found! Please Register").then(()=>window.location.href="/register");
-  //         }
-  //         else if(response.data==="Password does not match")
-  //         {
-  //           swal("Password does not match");
-  //         }
-  //         else
-  //         {
-  //           swal("Successfully logged in").then(()=>window.location.href="/");
-  //           window.localStorage.setItem("_id",response.data._id);
-  //         }
-  //       })
-  // }
 
   render() {
     const { email, password } = this.state.formData;
@@ -82,6 +43,7 @@ class Login extends Component {
     if(isAuthenticated){
       return <Redirect to="/dashboard" />
     }
+
     return (
       <div className="signIn">
         <div className="photo">

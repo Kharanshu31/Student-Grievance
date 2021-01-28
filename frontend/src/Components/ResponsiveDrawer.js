@@ -4,11 +4,14 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Dashboard from "./Dashboard"
 import useStyles from './ResponiveDrawerStyles'
 import TopBarAndDrawer from './TopBarAndDrawer'
+import { connect } from 'react-redux';
 
 function ResponsiveDrawer(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
+
+  // console.log("auth" , props.isAuthenticated) ;
 
   return (
     <div className={classes.root}>
@@ -31,4 +34,11 @@ ResponsiveDrawer.propTypes = {
   window: PropTypes.func,
 };
 
-export default ResponsiveDrawer;
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+export default connect(mapStateToProps)(ResponsiveDrawer);
+
