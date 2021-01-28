@@ -49,9 +49,11 @@ const PrivateRoute = (privateRouteProps) => {
 
 function App(props) {
   // component did mount
+
   useEffect(() => {
+    //console.log(props.auth.isAuthenticated);
     props.dispatch(loadUser());
-  }, []);
+  },[props.auth.isAuthenticated]);
 
   const { isAuthenticated } = props.auth;
   console.log(isAuthenticated) ;
@@ -65,11 +67,13 @@ function App(props) {
           <Route path="/register" component={Register} />
           <Route path="/dashboard" component={ResponsiveDrawer} />
           {/* <Route path="/submit" component={Form} /> */}
-          <PrivateRoute
-            path="/submit"
-            component={Form}
-            isAuthenticated={props.auth.isAuthenticated}
-          />
+          {props.auth.isAuthenticated ? (
+            <PrivateRoute
+              path="/submit"
+              component={Form}
+              isAuthenticated={props.auth.isAuthenticated}
+            />
+          ) : null }
           <Route component={Page404} />
         </Switch>
 
