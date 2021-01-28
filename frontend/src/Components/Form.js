@@ -6,7 +6,7 @@ import SendIcon from '@material-ui/icons/Send';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import {postcomplaint} from '../actions/complaint';
 import { connect } from "react-redux";
-
+import { Redirect} from "react-router-dom";
 import React, { Component } from 'react'
 
 const styles = (theme) => ({
@@ -49,6 +49,9 @@ class Form extends Component {
   };
 
 
+  
+
+
   onSubmit=(e)=>{
     const { university, college, department, title,complaint } = this.state;
 
@@ -67,6 +70,9 @@ class Form extends Component {
   };
   render () {
       const { classes } = this.props;
+     const submitButtonClickHandler=()=>{
+        window.location.href="http://localhost:3000/dashboard";
+      }
 
   return (
 
@@ -103,6 +109,7 @@ class Form extends Component {
         color="secondary"
         className={classes.button}
         endIcon={<SendIcon/>}
+        onClick={submitButtonClickHandler}
       >Submit</Button>
       
       </div>
