@@ -23,7 +23,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 import useStyles from "./ResponiveDrawerStyles";
 import { logout } from "../actions/auth";
-import { Redirect, withRouter } from "react-router-dom";
+import { Redirect, withRouter} from "react-router-dom";
 import { connect } from "react-redux";
 import { getcomplaint } from "../actions/complaint";
 
@@ -91,7 +91,17 @@ function TopBarAndDrawer(props) {
       <Divider />
       <List>
         {["Dashboard", "Submit New Complaint", "Report"].map((text, index) => (
-          <ListItem button key={text}>
+          <ListItem button key={text} onClick={(e)=>{
+            e.preventDefault();
+            if(index===0)
+            {
+              props.history.push("/dashboard");
+            }
+            if(index==1)
+            {
+              props.history.push("/submit");
+            }
+          }}>
             <ListItemIcon>
               {index === 0 ? (
                 <HomeIcon />
