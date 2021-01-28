@@ -29,11 +29,14 @@ function Cardblock(props) {
 
     const [pending,setPending]=useState(0);
     const [completed,setCompleted]=useState(0);
+    const [load,setLoad]=useState(false)
+    const [maxcount,setMaxcount]=useState(0)
 
-    useEffect(() => {
-      props.getcomplaint();
-
-      props.complaint.complaints.map(el=>{
+    useEffect(async () => {
+      await props.getcomplaint();
+      //await props.getcomplaint();
+      console.log(props.complaints);
+      props.complaints.map(el=>{
           //console.log(el);
           if(el.status)
           {
@@ -46,7 +49,13 @@ function Cardblock(props) {
           //setComplaintLength(props.complaint.complaints.length)
       })
 
-    }, [getcomplaint]);
+      if(props.complaints.length===0 && maxcount<=3)
+      {
+        setLoad(prevstate=>!prevstate)
+        setMaxcount(prevstate=>prevstate+1)
+      }
+
+    },[load]);
 
         return (
             <div className={classes.root}>
@@ -91,7 +100,7 @@ function Cardblock(props) {
 
 function mapStateToProps(state) {
   return {
-    complaint:state.complaint
+    complaints:state.complaint.complaints
   };
 }
 

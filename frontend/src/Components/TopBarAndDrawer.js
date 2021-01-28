@@ -47,19 +47,33 @@ function TopBarAndDrawer(props) {
     props.dispatch(logout());
   };
 
-  useEffect(() => {
-    props.dispatch(getcomplaint());
+  const [load,setLoad]=useState(false)
+  const [maxcount,setMaxcount]=useState(0)
 
-    props.complaint.complaints.map((el) => {
-      //console.log(el);
-      if (el.status) {
-        setCompleted((prevstate) => prevstate + 1);
-      } else {
-        setPending((prevstate) => prevstate + 1);
-      }
-      //setComplaintLength(props.complaint.complaints.length)
-    });
-  }, []);
+  useEffect(async () => {
+    await props.dispatch(getcomplaint());
+    //await props.getcomplaint();
+    console.log(props.complaints);
+    props.complaints.map(el=>{
+        //console.log(el);
+        if(el.status)
+        {
+          setCompleted(prevstate=>prevstate+1)
+        }
+        else
+        {
+          setPending(prevstate=>prevstate+1)
+        }
+        //setComplaintLength(props.complaint.complaints.length)
+    })
+
+    if(props.complaints.length===0 && maxcount<=3)
+    {
+      setLoad(prevstate=>!prevstate)
+      setMaxcount(prevstate=>prevstate+1)
+    }
+
+  },[load]);
 
   useEffect(() => {
     // console.log('running');
@@ -222,7 +236,7 @@ TopBarAndDrawer.propTypes = {
 function mapStateToProps(state) {
   return {
     auth: state.auth,
-    complaint: state.complaint,
+    complaints: state.complaint.complaints,
   };
 }
 

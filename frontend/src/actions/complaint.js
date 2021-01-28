@@ -27,7 +27,13 @@ export const postcomplaint=({ university, college, department, title,complaint }
 export const getcomplaint=()=>{
   return async (dispatch) => {
       try {
-        const res=await axios.get("/api/complaint")
+        const config = {
+            headers: {
+              "Content-Type": "application/json",
+              "x-auth-token":localStorage.token
+            },
+          };
+        const res=await axios.get("/api/complaint",config)
 
         dispatch({
           type:GETCOMPLAINT_SUCCESS,
