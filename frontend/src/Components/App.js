@@ -67,13 +67,15 @@ function App(props) {
           <Route path="/register" component={Register} />
           <Route path="/dashboard" component={ResponsiveDrawer} />
           {/* <Route path="/submit" component={Form} /> */}
-          {props.auth.isAuthenticated ? (
+          {props.auth.isAuthenticated===null ? (
+            null
+          ) : (
             <PrivateRoute
               path="/submit"
               component={Form}
               isAuthenticated={props.auth.isAuthenticated}
             />
-          ) : null }
+          ) }
           <Route component={Page404} />
         </Switch>
 
