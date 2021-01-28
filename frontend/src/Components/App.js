@@ -53,7 +53,7 @@ function App(props) {
   useEffect(() => {
     //console.log(props.auth.isAuthenticated);
     props.dispatch(loadUser());
-  },[props.auth.isAuthenticated]);
+  },[]);
 
   const { isAuthenticated } = props.auth;
   console.log(isAuthenticated) ;
