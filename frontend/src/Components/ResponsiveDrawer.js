@@ -5,6 +5,7 @@ import Dashboard from "./Dashboard"
 import useStyles from './ResponiveDrawerStyles'
 import TopBarAndDrawer from './TopBarAndDrawer'
 import { connect } from 'react-redux';
+import UserProfile from "./UserProfile";
 
 function ResponsiveDrawer(props) {
   const { window } = props;
