@@ -3,9 +3,19 @@ import "../css/Home.css";
 import HowItWorks from "./HowItWorks";
 import ContactUs from "./ContactUs";
 import backgroundImg from "../images/background.svg";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-export default class Home extends Component {
+ class Home extends Component {
   render() {
+    const { isAuthenticated } = this.props.auth ;
+
+    // Redirect if logged in
+
+    if(isAuthenticated){
+      return <Redirect to="/dashboard" />
+    }
+
     return (
       <section style={{ minHeight: "100vh" }}>
         <div className="Home">
@@ -36,3 +46,11 @@ export default class Home extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+export default connect(mapStateToProps)(Home) ;

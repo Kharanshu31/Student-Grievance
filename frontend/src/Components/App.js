@@ -15,18 +15,18 @@ import { connect } from "react-redux";
 import setAuthToken from "../utils/setAuthToken";
 import { loadUser } from "../actions/auth";
 import SubmitNewComplaint from "./SubmitNewComplaint";
-import TopBarAndDrawer from './TopBarAndDrawer';
+import TopBarAndDrawer from "./TopBarAndDrawer";
 import Dashboard from "./Dashboard";
-import UserProfile from './UserProfile'
+import UserProfile from "./UserProfile";
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
 const PrivateRoute = (privateRouteProps) => {
-  console.log("privateRouteProps" , privateRouteProps) ;
+  console.log("privateRouteProps", privateRouteProps);
   const { isAuthenticated, component: Component, path } = privateRouteProps;
 
-  const [isLoggedIn , setLogIn] = useState(false) ;
+  const [isLoggedIn, setLogIn] = useState(false);
 
   // useEffect(() => {
   //   if(isAuthenticated){
@@ -54,42 +54,35 @@ function App(props) {
   useEffect(() => {
     //console.log(props.auth.isAuthenticated);
     props.dispatch(loadUser());
-  },[]);
+  }, []);
 
   const { isAuthenticated } = props.auth;
-  console.log(isAuthenticated) ;
+  console.log(isAuthenticated);
   return (
     <Router>
       <div>
-        {isAuthenticated?<TopBarAndDrawer />:<Navigationbar />}
+        {isAuthenticated ? <TopBarAndDrawer /> : <Navigationbar />}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          {/* <PrivateRoute 
-            path="/dashboard" component={Dashboard}  isAuthenticated={props.auth.isAuthenticated}/> */}
-          {/* <Route path="/submit" component={Form} /> */}
-          {props.auth.isAuthenticated===null ? (
-            null
-          ) : (
+
+          {props.auth.isAuthenticated === null ? null : (
             <PrivateRoute
               path="/submit"
               component={SubmitNewComplaint}
               isAuthenticated={props.auth.isAuthenticated}
             />
-          ) }
-          {props.auth.isAuthenticated===null ? (
-            null
-          ) : (
+          )}
+          {props.auth.isAuthenticated === null ? null : (
             <PrivateRoute
               path="/dashboard"
               component={Dashboard}
               isAuthenticated={props.auth.isAuthenticated}
             />
-          ) }
+          )}
           <Route component={Page404} />
         </Switch>
-
       </div>
     </Router>
   );
