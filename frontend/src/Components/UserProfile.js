@@ -15,9 +15,23 @@ import "../css/UserProfile.css";
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
-    display: 'flex',
+    
     justifyContent: 'center',
+    display: 'inline-block',
+    position: 'absolute',
+    top: '10vh',
+    right: '0%',
+    width: '80%',
   },
+  // '@media screen and (max-width: 600px)': {
+  //   root: {
+      
+  //     justifyContent: 'center',
+  //     left: '10%',
+  //     alignItem : 'center', 
+  //     width: "100%",
+  //   },
+  // },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
@@ -73,8 +87,8 @@ class UserProfile extends Component {
     const { classes } = this.props;
   return (
     <MuiThemeProvider theme={theme} >
-
-        <h1 style={{textAlign:'center'}}>User Profile</h1>
+        <div className={classes.root}>
+                <h1 style={{textAlign:'center'}}>User Profile</h1>
 
         <Divider style={{margin: '20px'}}/>
 
@@ -85,8 +99,6 @@ class UserProfile extends Component {
         </Fab>
 
         </div>
-    
-        <div className={classes.root}>
             <form className={classes.form} noValidate autoComplete="off" >
                 <Grid container spacing={3}>
                     <Grid item md={12} lg={6}>

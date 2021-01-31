@@ -10,13 +10,14 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import ResponsiveDrawer from "./ResponsiveDrawer";
 // redux
 import { connect } from "react-redux";
 import setAuthToken from "../utils/setAuthToken";
 import { loadUser } from "../actions/auth";
-import Form from "./Form";
+import SubmitNewComplaint from "./SubmitNewComplaint";
 import TopBarAndDrawer from './TopBarAndDrawer';
+import Dashboard from "./Dashboard";
+import UserProfile from './UserProfile'
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -65,14 +66,24 @@ function App(props) {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/dashboard" component={ResponsiveDrawer} />
+          {/* <PrivateRoute 
+            path="/dashboard" component={Dashboard}  isAuthenticated={props.auth.isAuthenticated}/> */}
           {/* <Route path="/submit" component={Form} /> */}
           {props.auth.isAuthenticated===null ? (
             null
           ) : (
             <PrivateRoute
               path="/submit"
-              component={Form}
+              component={SubmitNewComplaint}
+              isAuthenticated={props.auth.isAuthenticated}
+            />
+          ) }
+          {props.auth.isAuthenticated===null ? (
+            null
+          ) : (
+            <PrivateRoute
+              path="/dashboard"
+              component={Dashboard}
               isAuthenticated={props.auth.isAuthenticated}
             />
           ) }
