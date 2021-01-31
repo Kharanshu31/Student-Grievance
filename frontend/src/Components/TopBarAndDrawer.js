@@ -21,7 +21,7 @@ import InsertChartIcon from "@material-ui/icons/InsertChart";
 import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
-import useStyles from "./ResponiveDrawerStyles";
+import useStyles from "./TopBarAndDrawerStyles";
 import { logout } from "../actions/auth";
 import { Redirect, withRouter} from "react-router-dom";
 import { connect } from "react-redux";

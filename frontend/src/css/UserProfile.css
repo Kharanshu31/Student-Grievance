@@ -1,0 +1,11 @@
+.MuiGrid-root.MuiGrid-item.MuiGrid-grid-md-12.MuiGrid-grid-lg-6,
+.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12 {
+  display: flex;
+  justify-content: center;
+}
+
+.fab {
+  position: absolute;
+  right: 30px;
+  top: 0%;
+}
