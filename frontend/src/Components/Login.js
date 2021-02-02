@@ -47,7 +47,7 @@ class Login extends Component {
 
     return (
       <div className="signIn">
-        <div className="photo">
+        <div className="photo2">
           <img src={pic} alt="" />
         </div>
         <div className="signInForm">
@@ -84,11 +84,6 @@ class Login extends Component {
             <button type="submit">Log In</button>
           </form>
 
-          <p className="p">or</p>
-
-          <button className="google">
-            <a>Google</a>
-          </button>
         </div>
       </div>
     );

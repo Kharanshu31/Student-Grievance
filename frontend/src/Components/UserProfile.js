@@ -53,17 +53,14 @@ class Profile extends Component {
                     </h3>
                     <div className='h5 font-weight-300'>
                       <i className='ni location_pin mr-2' />
-                      User location 
+                      {this.state.auth.user.city} , India
                     </div>
                     <hr className='my-4' />
 
                     <div className="mt-4">
                       <i className='ni education_hat mr-2' />
-                      <b>User university / college </b>
+                      <b>{this.state.auth.user.college} </b>
                     </div>
-                    {/* <p>
-                      user description
-                    </p> */}
                   </div>
                 </CardBody>
               </Card>
@@ -202,21 +199,7 @@ class Profile extends Component {
                         
                       </Row>
                     </div>
-                    {/* <hr className='my-4' /> */}
-                    {/* Description */}
-                    {/* <h6 className='heading-small text-muted mb-4'>About me</h6>
-                    <div className='pl-lg-4'>
-                      <FormGroup>
-                        <label>About Me</label>
-                        <Input
-                          className='form-control-alternative'
-                          placeholder='A few words about you ...'
-                          defaultValue={this.state.auth.user.description}
-                          rows='4'
-                          type='textarea'
-                        />
-                      </FormGroup>
-                    </div> */}
+                    
                   </Form>
                 </CardBody>
               </Card>

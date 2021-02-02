@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
   Collapse,
@@ -9,10 +9,10 @@ import {
   NavItem,
   NavLink,
   ButtonToggle,
-} from "reactstrap";
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
 
-import "../css/Navigationbar.css";
-import { Link } from "react-router-dom";
+import '../css/Navigationbar.css';
 
 class Navigationbar extends Component {
   constructor(props) {
@@ -25,11 +25,11 @@ class Navigationbar extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   toggle = () => {
@@ -56,49 +56,57 @@ class Navigationbar extends Component {
   render() {
     const { isOpen, isScrolled } = this.state;
     return (
-      <div className={isScrolled || isOpen? "Navigation scrolled" : "Navigation"}>
-        <Navbar light expand="md" className="Navbar ml-auto">
+      <div
+        className={isScrolled || isOpen ? 'Navigation scrolled' : 'Navigation'}
+      >
+        <Navbar light expand='md' className='Navbar ml-auto'>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav
-              style={{ alignItems: "revert", width: "100%" }}
+              style={{ alignItems: 'revert', width: '100%' }}
               navbar
-              className="justify-content-end"
+              className='justify-content-end'
             >
               <NavItem>
                 <NavLink
-                  className={isScrolled || isOpen? "Navlink scrolledNavlink" : "Navlink"}
+                  className={
+                    isScrolled || isOpen ? 'Navlink scrolledNavlink' : 'Navlink'
+                  }
                   tag={Link}
-                  to="/"
-                  href="/home"
+                  to='/'
+                  href='/home'
                 >
                   Home
                 </NavLink>
               </NavItem>
-              
+
               <NavItem>
                 <NavLink
                   tag={Link}
-                  to="/register"
-                  className="Navlink"
-                  href="/register"
+                  to='/register'
+                  className='Navlink'
+                  href='/register'
                 >
                   <ButtonToggle
-                    className={isScrolled || isOpen? "auth scrolledAuth" : "auth"}
+                    className={
+                      isScrolled || isOpen ? 'auth scrolledAuth' : 'auth'
+                    }
                   >
                     Register
-                  </ButtonToggle>{" "}
+                  </ButtonToggle>{' '}
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
                   tag={Link}
-                  to="/login"
-                  className="Navlink"
-                  href="/login"
+                  to='/login'
+                  className='Navlink'
+                  href='/login'
                 >
                   <ButtonToggle
-                    className={isScrolled || isOpen? "auth scrolledAuth" : "auth"}
+                    className={
+                      isScrolled || isOpen ? 'auth scrolledAuth' : 'auth'
+                    }
                   >
                     Login
                   </ButtonToggle>
