@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import pic from "../images/8576.jpg";
 import {Redirect} from 'react-router-dom' ;
-import "../css/login.css";
 import { connect } from "react-redux";
 import { login } from "../actions/auth";
+import "../css/login.css";
+
 // import axios from "axios";
 import swal from "sweetalert";
 

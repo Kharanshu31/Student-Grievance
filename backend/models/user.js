@@ -22,16 +22,13 @@ const UserSchema = new Schema(
     },
     college: {
       type: String,
-      // required,
+      required: true,
     },
     city: {
       type: String,
-      // required,
+      required: true,
     },
     address: {
-      type: String,
-    },
-    description: {
       type: String,
     }
   },

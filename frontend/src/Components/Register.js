@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import pic from '../images/contact.jpg';
 import { Redirect } from 'react-router-dom';
-import '../css/register.css';
 import { connect } from 'react-redux';
 import { register } from '../actions/auth';
+import '../css/register.css';
+
 // import axios from "axios";
 // import swal from 'sweetalert';
 
@@ -60,7 +61,6 @@ class Register extends Component {
       college,
       city,
       address,
-      description,
     } = this.state.formData;
     const { isAuthenticated } = this.props.auth;
 

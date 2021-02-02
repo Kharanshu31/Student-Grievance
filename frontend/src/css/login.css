@@ -2,6 +2,7 @@
   display: flex;
   justify-content: flex-start;
   padding-top: 8%;
+  background-color: white;
 }
 
 .photo img {

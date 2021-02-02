@@ -20,6 +20,8 @@ router.post(
       "password",
       "Please enter password with more than 6 characters"
     ).isLength({ min: 6 }),
+    check("city", "City is required").not().isEmpty(),
+    check("college", "College is required").not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -27,7 +29,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { email, name, password } = req.body;
+    const { email, name, password , city , college} = req.body;
 
     try {
       let user = await User.findOne({ email });
@@ -50,6 +52,8 @@ router.post(
         email,
         avatar,
         password,
+        city,
+        college
       });
 
       const salt = await bcrypt.genSalt(10);
