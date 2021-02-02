@@ -3,7 +3,6 @@ import Divider from '@material-ui/core/Divider';
 import {withStyles} from '@material-ui/styles'
 import Typography from '@material-ui/core/Typography';
 import Form from './Form'
-import Form2 from './Form2'
  
 const styles = {
     root : {
@@ -26,7 +25,7 @@ class SubmitNewComplaint extends Component {
         </Typography>
         
         <Divider style={{ margin:"20px" }}/>
-        <Form2/>
+        <Form/>
         
         <Divider style={{ margin:"20px" }}/>
                 
