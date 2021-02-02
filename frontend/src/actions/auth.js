@@ -34,7 +34,7 @@ export const loadUser = () => {
 
 // add alert for each error later
 // Register User
-export const register = ({ name, email, password }) => {
+export const register = ({ name, email, password , college, city, address}) => {
   return async (dispatch) => {
     const config = {
       headers: {
@@ -42,7 +42,7 @@ export const register = ({ name, email, password }) => {
       },
     };
 
-    const body = JSON.stringify({ name, email, password });
+    const body = JSON.stringify({ name, email, password , college, city, address});
 
     try {
       const res = await axios.post("/api/users", body, config);

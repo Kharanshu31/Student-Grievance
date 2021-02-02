@@ -34,7 +34,7 @@ class UserHeader extends Component {
         {/* Mask */}
         <span className="mask bg-gradient-default opacity-8" />
         {/* Header container */}
-        <Container className="d-flex align-items-center" style={{paddingLeft:"5%"}} fluid>
+        <Container className="d-flex align-items-center" style={{paddingLeft:"3.5%"}} fluid>
           <Row>
             <Col lg="7" md="10">
               <h1 className="display-2 text-white">Hello {this.state.name}</h1>
