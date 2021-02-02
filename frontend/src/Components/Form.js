@@ -1,126 +1,154 @@
+import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 import { postcomplaint } from '../actions/complaint';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import React, { Component } from 'react';
 
-const styles = (theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
+const Departments = [
+    'Admin', 'Admission', 'Fee', 'Accomodation'
+];
 
-  formDiv: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  button: {
-    margin: theme.spacing(1),
-  },
-});
+const Priorities = [
+    'Urgent', 'High', 'Medium', 'Low'
+];
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#e83e8c',
-    },
-  },
-});
+const styles = {
+    root : {
+        width: '50%',
+        gridGap: '2rem',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        justifySelf: 'center',
+        marginLeft: '10%',
+        '& .MuiOutlinedInput-root' : {
+            width : '60%',
+           
+        },
+        '& .MuiOutlinedInput-multiline' : {
+            width : '100%',
+        }
+        
+    }
 
-class Form extends Component {
-  state = {
-    university: '',
-    college: '',
-    department: '',
-    title: '',
-    complaint: '',
-  };
+}
 
-  onSubmit = (e) => {
-    const { university, college, department, title, complaint } = this.state;
+class Form2 extends Component {
 
-    e.preventDefault();
-    this.props.dispatch(
-      postcomplaint({ university, college, department, title, complaint })
-    );
-  };
+    
+          state = {
+            department: '',
+            priority: '',
+            title: '',
+            description: '',
+        };
+          onSubmit = (e) => {
+            const { department, title, priority, description} = this.state;
 
-  handleChange = (evt) => {
-    console.log(evt.target.value);
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    });
-  };
-  render() {
-    const { classes } = this.props;
-    const submitButtonClickHandler = () => {
+            e.preventDefault();
+            this.props.dispatch(
+            postcomplaint({ priority, department, title, description })
+            );
+        };
+          handleChange = (evt) => {
+              console.log(evt.target.value);
+            this.setState({
+            [evt.target.name]: evt.target.value,
+            });
+        };
+
+render() {
+        const {classes} = this.props
+            const submitButtonClickHandler = () => {
       window.location.href = 'http://localhost:3000/dashboard';
     };
+        return (
 
-    return (
-      <MuiThemeProvider theme={theme}>
-        <form
-          className={classes.root}
-          noValidate
-          autoComplete='off'
-          onSubmit={(e) => this.onSubmit(e)}
-        >
-          <div className={classes.formDiv}>
-
-            <TextField
-              id='outlined-basic'
-              label='Department'
-              variant='outlined'
-              onChange={this.handleChange}
-              value={this.state.department}
-              name='department'
-            />
-
-            <TextField
-              id='outlined-basic'
-              label='Title'
-              variant='outlined'
-              onChange={this.handleChange}
+     
+                <form
+                    className={classes.root}
+                    noValidate
+                    autoComplete='off'
+                    onSubmit={(e) => this.onSubmit(e)}
+            >
+                          <TextField
+                id="outlined-multiline-static"
+                label="Title"
+               color='secondary'
+                onChange={this.handleChange}
               value={this.state.title}
               name='title'
-            />
-            <TextField
-              id='outlined-multiline-static'
-              onChange={this.handleChange}
-              value={this.state.complaint}
-              label='Complaint'
-              name='complaint'
-              multiline
-              rows={7}
-              style={{
-                width: '50%',
-              }}
-              //   defaultValue="Default Value"
-              variant='outlined'
-            />
+                variant="outlined"
+                />
+                 <TextField
+                    id="outlined-select"
+                    select
+                    label="Department"
+                    defaultValue="Default Value"
+                    color='secondary'
+                    variant="outlined"
+                    onChange={this.handleChange}
+                    value={this.state.department}
+                    name='department'
+                    
+                 >{
+                    Departments.map((department) => (
+                    <MenuItem key={department} value={department}>
+                    {department}
+                    </MenuItem>
+                 ))}
 
+                </TextField>
+
+                <TextField
+                    id="outlined-select"
+                    select
+                    label="Priority"
+                    color={'secondary'}
+                    defaultValue="Default Value"
+                    variant="outlined"
+                    onChange={this.handleChange}
+                    value={this.state.priority}
+                    name='priority'
+                 >{
+                    Priorities.map((priority) => (
+                    <MenuItem key={priority} value={priority}>
+                    {priority}
+                    </MenuItem>
+                 ))}
+                </TextField>
+              
+                <TextField
+                id="outlined-multiline-static"
+                label="Description"
+                multiline
+                onChange={this.handleChange}
+              value={this.state.description}
+              name='description'
+                rows={4}
+                color='secondary'
+                variant="outlined"
+                />
+                <div>
             <Button
               type='submit'
               variant='contained'
               color='secondary'
               className={classes.button}
               endIcon={<SendIcon />}
-              onClick={submitButtonClickHandler}
+            //   onClick={submitButtonClickHandler}
             >
               Submit
             </Button>
-          </div>
-        </form>
-      </MuiThemeProvider>
-    );
-  }
+            </div>
+            </form>
+        
+        )
+    }
 }
 
-export default connect()(withStyles(styles, { withTheme: true })(Form));
+export default connect()(withStyles(styles, { withTheme: true })(Form2));
