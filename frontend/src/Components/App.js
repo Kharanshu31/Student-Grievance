@@ -18,6 +18,7 @@ import SubmitNewComplaint from "./SubmitNewComplaint";
 import TopBarAndDrawer from "./TopBarAndDrawer";
 import Dashboard from "./Dashboard";
 import UserProfile from "./UserProfile";
+import '../css/argon-dashboard-react.css';
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -78,6 +79,13 @@ function App(props) {
             <PrivateRoute
               path="/dashboard"
               component={Dashboard}
+              isAuthenticated={props.auth.isAuthenticated}
+            />
+          )}
+          {props.auth.isAuthenticated === null ? null : (
+            <PrivateRoute
+              path="/profile"
+              component={UserProfile}
               isAuthenticated={props.auth.isAuthenticated}
             />
           )}

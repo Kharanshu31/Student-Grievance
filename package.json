@@ -18,5 +18,7 @@
     "url": "https://github.com/Kharanshu31/Student-Grievance/issues"
   },
   "homepage": "https://github.com/Kharanshu31/Student-Grievance#readme",
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "^4.6.0"
+  }
 }

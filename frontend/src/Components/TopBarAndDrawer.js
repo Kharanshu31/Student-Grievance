@@ -96,7 +96,9 @@ function TopBarAndDrawer(props) {
     <div>
       <div className={classes.toolbar} />
       <Divider />
-      <h1 style={{ marginLeft: "20px", fontSize: "36px", fontWeight: "200" }}>
+      <h1 style={{ marginLeft: "20px", fontSize: "36px", fontWeight: "200" ,cursor:"pointer"}} onClick={()=>{
+        props.history.push("/profile");
+      }}>
         {username}
       </h1>
       <h2 style={{ marginLeft: "20px", fontSize: "18px", fontWeight: "bold" }}>
@@ -178,7 +180,7 @@ function TopBarAndDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap style={{color:"white"}}>
             Grievance Portal
           </Typography>
 

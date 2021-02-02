@@ -3,7 +3,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 const drawerWidth = 300;
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: 'inline-block',
     position: 'absolute',
     zIndex: '0',
     top: '12vh',
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
+      width: '78%',
       marginLeft: drawerWidth,
     },
   },
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
-    width: drawerWidth,
+    width: '22%',
   },
   content: {
     flexGrow: 1,
