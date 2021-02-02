@@ -13,6 +13,7 @@ const styles = {
         top: '10vh',
         left: '22%',
         width: '78%',
+        
     }
 }
 class Dashboard extends Component {
@@ -21,7 +22,7 @@ class Dashboard extends Component {
     const {classes} = this.props
     return (
       <div className={classes.root}>
-      <div className={COMPLAINTPOST_SUCCESS.root}>
+      <div >
         <Typography style={{ display: "flex", justifyContent: "center" }}>
           <h1>Dashboard</h1>
         </Typography>
