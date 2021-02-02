@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import pic from "../images/8576.jpg";
 import {Redirect} from 'react-router-dom' ;
-import "../css/login.css";
 import { connect } from "react-redux";
 import { login } from "../actions/auth";
+import "../css/login.css";
+
 // import axios from "axios";
 import swal from "sweetalert";
 
@@ -46,7 +47,7 @@ class Login extends Component {
 
     return (
       <div className="signIn">
-        <div className="photo">
+        <div className="photo2">
           <img src={pic} alt="" />
         </div>
         <div className="signInForm">
@@ -83,11 +84,6 @@ class Login extends Component {
             <button type="submit">Log In</button>
           </form>
 
-          <p className="p">or</p>
-
-          <button className="google">
-            <a>Google</a>
-          </button>
         </div>
       </div>
     );

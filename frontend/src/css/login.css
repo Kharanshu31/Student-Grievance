@@ -2,16 +2,18 @@
   display: flex;
   justify-content: flex-start;
   padding-top: 8%;
+  background-color: white;
 }
 
-.photo img {
+.photo2 img {
   height: 40rem;
   width: 40rem;
   margin-left: 18%;
+  margin-top: -6%;
 }
 
 .signInForm {
-  margin-left: 18%;
+  margin-left: 24%;
   margin-top: 3%;
 }
 .signInForm h1 {
@@ -42,31 +44,16 @@
   background-color: #00587a;
   color: white;
   font-size: 1.2rem;
-  margin-top: 2%;
+  margin-top: 8%;
 }
 .signInForm p {
   color: #525050;
   font-size: 1rem;
   font-family: sans-serif;
 }
-.signInForm button {
-  border: 0px solid transparent;
-  border-radius: 1rem;
-  background-color: #e24e42;
-  font-size: 1.1rem;
-  padding: 6px 4px;
-  width: 8rem;
-  height: 2.6rem;
-}
+
 .signInForm button a {
   text-decoration: none;
   color: white;
 }
 
-.p {
-  margin-left: 45%;
-}
-
-.google {
-  margin-left: 30%;
-}

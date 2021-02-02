@@ -1,19 +1,23 @@
-import React, { Component } from "react";
-import pic from "../images/contact.jpg";
-import {Redirect} from 'react-router-dom' ;
-import "../css/register.css";
-import { connect } from "react-redux";
-import { register } from "../actions/auth";
+import React, { Component } from 'react';
+import pic from '../images/contact.jpg';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { register } from '../actions/auth';
+import '../css/register.css';
+
 // import axios from "axios";
-import swal from "sweetalert";
+// import swal from 'sweetalert';
 
 class Register extends Component {
   state = {
     formData: {
-      name: "",
-      email: "",
-      password: "",
-      confirm_password: "",
+      name: '',
+      email: '',
+      password: '',
+      confirm_password: '',
+      college: '',
+      city: '',
+      address: '',
     },
   };
 
@@ -27,130 +31,117 @@ class Register extends Component {
   };
 
   onSubmit = (e) => {
-    const { name, email, password, confirm_password } = this.state.formData;
+    const {
+      name,
+      email,
+      password,
+      confirm_password,
+      college,
+      city,
+      address,
+    } = this.state.formData;
 
     e.preventDefault();
 
     if (password !== confirm_password) {
       console.log("Password doesn't match");
     } else {
-      this.props.dispatch(register({ name, email, password }));
+      this.props.dispatch(
+        register({ name, email, password, college, city, address })
+      );
     }
   };
-  // handleChangeName = (e) => {
-  //   const n = e.target.value;
-  //   this.setState({ name: n });
-  // };
-
-  // handleChangeEmail = (e) => {
-  //   const n = e.target.value;
-  //   this.setState({ email: n });
-  // };
-
-  // handleChangePassword = (e) => {
-  //   const n = e.target.value;
-  //   this.setState({ password: n });
-  // };
-
-  // handleChangeConfirmPassword = (e) => {
-  //   const n = e.target.value;
-  //   this.setState({ confirm_password: n });
-  // };
-
-  // addUser=(e)=>{
-  //   e.preventDefault();
-  //   if(this.state.name==="" || this.state.email==="" || this.state.password==="" || this.state.confirm_password==="")
-  //   {
-  //     swal("Please enter all the fields");
-  //   }
-  //   else if(this.state.password!==this.state.confirm_password)
-  //   {
-  //     swal("Please enter all the fields");
-  //   }
-  //   else{
-
-  //     const item={
-  //       name:this.state.name,
-  //       email:this.state.email,
-  //       password:this.state.password
-  //     }
-
-  //     console.log(item);
-
-  //     axios.post("http://localhost:5000/users/add",item)
-  //       .then(response=>{
-  //         console.log(response.data);
-  //         window.localStorage.setItem("_id",response.data._id);
-  //         swal("Successfully Registered").then(()=>window.location.href="/");
-  //       }).catch(err=>console.log(err))
-  //   }
-  // }
 
   render() {
-    const { name, email, password, confirm_password } = this.state.formData;
-    const { isAuthenticated } = this.props.auth ;
+    const {
+      name,
+      email,
+      password,
+      confirm_password,
+      college,
+      city,
+      address,
+    } = this.state.formData;
+    const { isAuthenticated } = this.props.auth;
 
     // Redirect if logged in
 
-    if(isAuthenticated){
-      return <Redirect to="/login" />
+    if (isAuthenticated) {
+      return <Redirect to='/login' />;
     }
     return (
-      <div className="signUp">
-        <div className="signUpForm">
+      <div className='signUp'>
+        <div className='signUpForm'>
           <h1>Sign Up </h1>
 
           <form onSubmit={(e) => this.onSubmit(e)}>
             <input
-              type="text"
-              name="name"
-              placeholder="Your name"
+              type='text'
+              name='name'
+              placeholder='Your name'
               value={name}
               onChange={(e) => {
                 this.onChange(e);
               }}
-              // onChange={this.handleChangeName}
               required
             />
             <input
-              type="email"
-              name="email"
-              placeholder="Your email"
+              type='email'
+              name='email'
+              placeholder='Your email'
               value={email}
-              // onChange={this.handleChangeEmail}
               onChange={(e) => this.onChange(e)}
               required
             />
             <input
-              type="password"
-              name="password"
-              placeholder="Your password"
-              minLength="6"
+              type='password'
+              name='password'
+              placeholder='Your password'
+              minLength='6'
               value={password}
-              // onChange={this.handleChangePassword}
               onChange={(e) => this.onChange(e)}
               required
             />
             <input
-              type="password"
-              name="confirm_password"
-              placeholder="Confirm password"
+              type='password'
+              name='confirm_password'
+              placeholder='Confirm password'
               value={confirm_password}
-              // onChange={this.handleChangeConfirmPassword}
               onChange={(e) => this.onChange(e)}
               required
             />
-            <button type="submit">Sign Up</button>
+            <input
+              type='text'
+              name='college'
+              placeholder='College/University'
+              value={college}
+              onChange={(e) => this.onChange(e)}
+              // required
+            />
+            <input
+              type='text'
+              name='city'
+              placeholder='Your City'
+              value={city}
+              onChange={(e) => this.onChange(e)}
+              // required
+            />
+
+            <input
+              type='text'
+              name='address'
+              placeholder='Your Address'
+              value={address}
+              onChange={(e) => this.onChange(e)}
+            />
+
+            <button type='submit'>Sign Up</button>
           </form>
 
-          <p className="p">or</p>
 
-          <button className="google">
-            <a href="">Google</a>
-          </button>
         </div>
-        <div className="photo">
-          <img src={pic} alt="" />
+        <div className='photo'>
+          <img src={pic} alt='' />
         </div>
       </div>
     );
