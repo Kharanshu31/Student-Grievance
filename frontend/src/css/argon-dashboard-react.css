@@ -22,6 +22,12 @@
   left: 22%;
   
 }
+
+@media (max-width:599px){
+  .wrapper{
+    width: 100%;
+  }
+}
 :root {
   --blue: #5e72e4;
   --indigo: #5603ad;
