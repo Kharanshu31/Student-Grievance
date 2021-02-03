@@ -9,6 +9,7 @@ import { postcomplaint } from "../actions/complaint";
 import { connect } from "react-redux";
 import { getdepartment } from "../actions/complaint";
 import { postdepartment } from "../actions/complaint";
+import axios from "axios";
 
 const Priorities = ["Urgent", "High", "Medium", "Low"];
 
@@ -32,7 +33,7 @@ const styles = {
 
 class Form2 extends Component {
   state = {
-    Departments: this.props.departments,
+    Departments: [],
     auth: this.props.auth,
     department: "",
     priority: "",
@@ -40,16 +41,42 @@ class Form2 extends Component {
     complaint: "",
     addcategory: "",
   };
-  componentDidMount() {
+  async componentDidMount() {
     console.log("Component did Mount", this.state);
-    this.props.dispatch(getdepartment());
+    // await this.props.dispatch(getdepartment());
+    axios
+      .get("http://localhost:5000/api/departments", {
+        "x-auth-token": localStorage.token,
+      })
+      .then((res) => {
+        console.log("Axios request sent");
+        console.log(res.data);
+        const deps = res.data.map((dep) => dep.department);
+        this.setState({ Departments: deps });
+      })
+      .catch((err) => {
+        console.log(err.respose ?? err);
+      });
   }
 
-  addCategory = (e) => {
+  addCategory = async (e) => {
     e.preventDefault();
     const xyz = this.state.addcategory;
     console.log("xyz", xyz);
-    this.props.dispatch(postdepartment({ department: xyz }));
+    axios
+      .post(
+        "http://localhost:5000/api/departments",
+        {
+          department: xyz,
+        },
+        {
+          "Content-Type": "application/json",
+          "x-auth-token": localStorage.token,
+        }
+      )
+      .then((res) => {
+        this.setState({ Departments: [...this.state.Departments, res.data] });
+      });
   };
   handleOnChange = (e) => {
     this.setState({ addcategory: e.target.value });
@@ -72,8 +99,8 @@ class Form2 extends Component {
   render() {
     const college = this.state.auth.user.college;
     const { classes } = this.props;
-    
-    // console.log("DEPARTMENT", departments);
+
+    console.log("DEPARTMENT", this.props.departments);
     // const submitButtonClickHandler = () => {
     //   window.location.href = "http://localhost:3000/dashboard";
     // };
@@ -105,7 +132,6 @@ class Form2 extends Component {
             name="department"
           >
             {this.state.Departments.map((department, index) => {
-              
               return (
                 <MenuItem key={index} value={department}>
                   {department}

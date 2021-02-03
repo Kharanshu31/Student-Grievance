@@ -7,9 +7,7 @@ router.get("/", auth, async (req, res) => {
   try {
     const departments = await Department.find();
     console.log("DEPARTMENTS", departments);
-    if (!departments) {
-      return res.json(["1"]);
-    }
+
     res.status(200).json(departments);
   } catch (error) {
     console.log(error.message);

@@ -32,14 +32,21 @@ export default function complaint(state = initialState, action) {
       };
 
     case GETDEPARTMENT_SUCCESS:
-    case POSTDEPARTMENT_SUCCESS:
-      const newArr = [action.payload] ;
-      state.departments.forEach(ele => newArr.push(ele)) ;
-      console.log("Reducer Array", newArr);
+      // const newArr = [action.payload] ;
+      // state.departments.forEach(ele => newArr.push(ele)) ;
+      // console.log("Reducer Array", newArr);
+      console.log("Payload", action.payload);
+
+      console.log(typeof action.payload);
+
+      const deps = Array(action.payload).map((dep) => dep.department);
 
       return {
         ...state,
-        departments: newArr,
+        departments:
+          deps.length > 0
+            ? [...state.departments, ...deps]
+            : [...state.departments],
         err: null,
       };
 
@@ -47,6 +54,12 @@ export default function complaint(state = initialState, action) {
       return {
         ...state,
         err: action.error,
+      };
+    case POSTDEPARTMENT_SUCCESS:
+      return {
+        ...state,
+        departments: [...state.departments, action.payload],
+        err: null,
       };
     default:
       return state;
