@@ -51,6 +51,7 @@ function TopBarAndDrawer(props) {
   const [maxcount,setMaxcount]=useState(0)
 
   useEffect(async () => {
+    
     await props.dispatch(getcomplaint());
     //await props.getcomplaint();
     //console.log(props.complaints);
