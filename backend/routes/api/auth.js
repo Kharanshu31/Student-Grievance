@@ -77,4 +77,32 @@ router.post(
   }
 );
 
+//update profile
+router.post("/update",auth,async (req,res)=>{
+  try {
+
+    const {name,email,college,city,address} = req.body;
+
+    const newitem={
+      name,
+      email,
+      college,
+      city,
+      address
+    }
+
+    const updatedUser=await User.findOneAndUpdate(
+      {_id:req.user.id},
+      {$set:newitem},
+      {new:true,upsert:true,setDefaultsOnInsert:true}
+    )
+
+    res.json(updatedUser);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json("Can't Update!!");
+  }
+})
+
 module.exports = router;
