@@ -1,6 +1,6 @@
 import axios from "axios";
 import {COMPLAINTPOST_SUCCESS,COMPLAINTPOST_FAILURE,GETCOMPLAINT_SUCCESS,GETCOMPLAINT_FAILURE} from './actionTypes';
-export const postcomplaint=({ university, college, department, title,complaint })=>{
+export const postcomplaint=({ priority, department, title, complaint,college })=>{
     return async (dispatch) => {
         const config = {
             headers: {
@@ -8,7 +8,7 @@ export const postcomplaint=({ university, college, department, title,complaint }
               "x-auth-token":localStorage.token
             },
           };
-        const body=JSON.stringify({university, college, department, title,complaint});
+        const body=JSON.stringify({priority, college, department, title,complaint});
 
         try {
             const res = await axios.post("/api/complaint", body, config);

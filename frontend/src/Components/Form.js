@@ -41,17 +41,18 @@ class Form2 extends Component {
 
     
           state = {
+            auth:this.props.auth,
             department: '',
             priority: '',
             title: '',
-            description: '',
+            complaint: '',
         };
-          onSubmit = (e) => {
-            const { department, title, priority, description} = this.state;
+          onSubmit = (e,college) => {
+            const { department, title, priority, complaint} = this.state;
 
             e.preventDefault();
             this.props.dispatch(
-            postcomplaint({ priority, department, title, description })
+            postcomplaint({ priority, department, title, complaint,college })
             );
         };
           handleChange = (evt) => {
@@ -62,6 +63,7 @@ class Form2 extends Component {
         };
 
 render() {
+  const college=this.state.auth.user.college;
         const {classes} = this.props
             const submitButtonClickHandler = () => {
       window.location.href = 'http://localhost:3000/dashboard';
@@ -73,7 +75,7 @@ render() {
                     className={classes.root}
                     noValidate
                     autoComplete='off'
-                    onSubmit={(e) => this.onSubmit(e)}
+                    onSubmit={(e) => this.onSubmit(e,college)}
             >
                           <TextField
                 id="outlined-multiline-static"
@@ -127,8 +129,8 @@ render() {
                 label="Description"
                 multiline
                 onChange={this.handleChange}
-              value={this.state.description}
-              name='description'
+              value={this.state.complaint}
+              name='complaint'
                 rows={4}
                 color='secondary'
                 variant="outlined"
@@ -151,4 +153,12 @@ render() {
     }
 }
 
-export default connect()(withStyles(styles, { withTheme: true })(Form2));
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+    
+  };
+}
+
+export default connect(mapStateToProps)(withStyles(styles, { withTheme: true })(Form2));

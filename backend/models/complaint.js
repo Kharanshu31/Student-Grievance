@@ -21,7 +21,7 @@ const ComplaintSchema = new Schema(
         type:String,
         required:true
     },
-    university:{
+    priority:{
         type:String,
         required:true
     },

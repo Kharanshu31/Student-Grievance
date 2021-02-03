@@ -63,7 +63,7 @@ router.post('/',[auth,
     check('title','Title is required!').not().isEmpty(),
     check('complaint','Complaint is required!').not().isEmpty(),
     check('department','Department is required!').not().isEmpty(),
-    check('university','University is required!').not().isEmpty(),
+    check('priority','Priority is required!').not().isEmpty(),
     check('college','College is required!').not().isEmpty()
 
 ], async(req,res)=>{
@@ -78,7 +78,7 @@ router.post('/',[auth,
            description:req.body.complaint,
            department:req.body.department,
            college:req.body.college,
-           university:req.body.university,
+           priority:req.body.priority,
            status:false
 
        });
