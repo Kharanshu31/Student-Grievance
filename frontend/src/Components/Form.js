@@ -7,8 +7,7 @@ import SendIcon from "@material-ui/icons/Send";
 
 import { postcomplaint } from "../actions/complaint";
 import { connect } from "react-redux";
-import { getdepartment } from "../actions/complaint";
-import { postdepartment } from "../actions/complaint";
+
 import axios from "axios";
 
 const Priorities = ["Urgent", "High", "Medium", "Low"];
@@ -193,7 +192,6 @@ function mapStateToProps(state) {
   console.log("MAP STATE", state.complaint.departments);
   return {
     auth: state.auth,
-    departments: state.complaint.departments,
   };
 }
 
