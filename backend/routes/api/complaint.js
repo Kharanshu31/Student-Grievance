@@ -6,6 +6,7 @@ const { check, validationResult } = require("express-validator");
 const Complaint=require('../../models/complaint');
 
 
+
 router.delete('/:id',auth, async(req,res)=>{
     try {
         const complaint=await Complaint.findById(req.params.id);
@@ -90,5 +91,8 @@ router.post('/',[auth,
     res.status(500).send('Server Error!');
    }
 });
+
+
+
 
 module.exports=router;
