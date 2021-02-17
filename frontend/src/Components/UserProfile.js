@@ -21,12 +21,30 @@ import UserHeader from './UserHeader.js';
 class Profile extends Component {
   state = {
     auth: this.props.auth,
+    name:"",
+    email:"",
+    college:"",
+    city:"",
+    address:""
   };
+
+  onChangeInput=(e)=>{
+    e.preventDefault();
+    this.setState({
+      [e.target.name]:e.target.value
+    })
+  }
 
   render() {
     return (
       <div className='wrapper'>
-        <UserHeader />
+        <UserHeader
+        name={this.state.name === "" ? this.state.auth.user.name : this.state.name}
+        email={this.state.email==="" ? this.state.auth.user.email : this.state.email}
+        college={this.state.college === "" ? this.state.auth.user.college : this.state.college}
+        city={this.state.city === "" ? this.state.auth.user.city : this.state.city}
+        address={this.state.address === "" ? this.state.auth.user.address : this.state.address}
+        />
         {/* Page content */}
         <Container className='mt--7' fluid>
           <Row>
@@ -73,7 +91,7 @@ class Profile extends Component {
                     <Col xs='8'>
                       <h3 className='mb-0'>My account</h3>
                     </Col>
-                    
+
                   </Row>
                 </CardHeader>
                 <CardBody>
@@ -96,6 +114,9 @@ class Profile extends Component {
                               defaultValue={this.state.auth.user.name}
                               id='input-username'
                               placeholder='Username'
+                              onChange={this.onChangeInput}
+                              //value={this.state.name}
+                              name="name"
                               type='text'
                             />
                           </FormGroup>
@@ -112,6 +133,9 @@ class Profile extends Component {
                               className='form-control-alternative'
                               id='input-email'
                               defaultValue={this.state.auth.user.email}
+                              onChange={this.onChangeInput}
+                              //value={this.state.email}
+                              name="email"
                               type='email'
                             />
                           </FormGroup>
@@ -131,11 +155,14 @@ class Profile extends Component {
                               id='input-first-name'
                               defaultValue={this.state.auth.user.college}
                               placeholder='Your University/College'
+                              onChange={this.onChangeInput}
+                              //value={this.state.college}
+                              name="college"
                               type='text'
                             />
                           </FormGroup>
                         </Col>
-                        
+
                       </Row>
                     </div>
                     <hr className='my-4' />
@@ -158,6 +185,9 @@ class Profile extends Component {
                               id='input-address'
                               defaultValue={this.state.auth.user.address}
                               placeholder='Home Address'
+                              onChange={this.onChangeInput}
+                              //value={this.state.address}
+                              name="address"
                               type='text'
                             />
                           </FormGroup>
@@ -177,6 +207,9 @@ class Profile extends Component {
                               defaultValue={this.state.auth.user.city}
                               id='input-city'
                               placeholder='City'
+                              onChange={this.onChangeInput}
+                              //value={this.state.city}
+                              name="city"
                               type='text'
                             />
                           </FormGroup>
@@ -196,10 +229,10 @@ class Profile extends Component {
                             />
                           </FormGroup>
                         </Col>
-                        
+
                       </Row>
                     </div>
-                    
+
                   </Form>
                 </CardBody>
               </Card>

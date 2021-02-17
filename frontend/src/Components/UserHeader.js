@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import {connect} from 'react-redux';
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
+import axios from "axios";
+import swal from "sweetalert";
 
 class UserHeader extends Component {
   state={
@@ -12,11 +14,31 @@ class UserHeader extends Component {
     this.setState({name:this.props.auth.user.name});
   }
 
-  render(){
-    
+  onEditProfile=(e)=>{
+    e.preventDefault();
+    const item={
+      name:this.props.name,
+      email:this.props.email,
+      college:this.props.college,
+      city:this.props.city,
+      address:this.props.address
+    }
 
-    
-  
+    const config={
+      "Content-Type": "application/json",
+      "x-auth-token": localStorage.token,
+    }
+
+    console.log(item);
+
+    axios.post("http://localhost:5000/api/auth/update",item,config)
+      .then(respose=>{
+        console.log(respose.data);
+        swal("Profile Edited").then(()=>window.location.href="/profile");
+      }).catch(err=>console.log(err));
+  }
+
+  render(){
   return (
     <>
       <div
@@ -45,7 +67,7 @@ class UserHeader extends Component {
               <Button
                 color="info"
                 href="#pablo"
-                onClick={(e) => e.preventDefault()}
+                onClick={this.onEditProfile}
               >
                 Edit profile
               </Button>
@@ -62,7 +84,7 @@ class UserHeader extends Component {
 function mapStateToProps(state) {
   return {
     auth: state.auth,
-    
+
   };
 }
 
